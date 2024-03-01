@@ -1,0 +1,35 @@
+{
+  "name": "idrc-wcag-reporter",
+  "version": "1.0.0",
+  "description": "Eleventy project to build accessibility conformance reports in HTML from issues written in Markdown.",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "eleventy --serve --port=1337",
+    "build": "eleventy",
+    "create-pdf": "./create_report.sh",
+    "add-report": "node add-report.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inclusive-design/idrc-wcag-reporter.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inclusive-design/idrc-wcag-reporter/issues"
+  },
+  "homepage": "https://github.com/inclusive-design/idrc-wcag-reporter#readme",
+  "dependencies": {
+    "eleventy-plugin-markdown-shortcode": "^1.1.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "copy": "0.3.2",
+    "fs": "0.0.1-security",
+    "open-editor": "3.0.0",
+    "prompt": "1.1.0",
+    "slugify": "1.5.3"
+  }
+}
