@@ -1,74 +1,61 @@
-const fs = require("fs");
-const path = require("path");
-const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const scTable = require("./src/_utils/scTable.js");
-const sampleImage = require("./src/_utils/sampleImage.js");
-const scUri = require("./src/_utils/scUri.js");
-const scName = require("./src/_utils/scName.js");
-const slugify = require("./src/_utils/slugify.js");
+import { EleventyRenderPlugin } from "@11ty/eleventy";
+import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
+import scTable from "./src/_utils/scTable.js";
+import scUri from "./src/_utils/scUri.js";
+import sanitizeNumber from "./src/_utils/sanitizeNumber.js";
+// const newGitHubIssueUrl = require("new-github-issue-url");
 
-const reportsFolderRelative = "src/reports";
-const reportsFolder = path.join(__dirname, reportsFolderRelative);
-
-const reports = fs.readdirSync(reportsFolder).filter((reportName) => {
-  const reportPath = path.join(reportsFolder, reportName);
-  return fs.existsSync(reportPath) && fs.lstatSync(reportPath).isDirectory();
-});
-
-const sanitizeNumber = (numberWithDots) => {
-  const numberString = numberWithDots
-    .split(".")
-    .map((numb) => (numb = Number(numb) < 10 ? "0" + numb : numb))
-    .join("");
-  return Number(numberString);
-};
-
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
   eleventyConfig.addFilter("sc_uri", scUri);
-  eleventyConfig.addFilter("sc_name", scName);
 
-  eleventyConfig.addFilter("slugify", slugify);
+  eleventyConfig.addFilter("newIssueUrl", (url) => {
+    if (url.indexOf("gitlab")) {
+      return;
+    }
+  });
 
-  eleventyConfig.addNunjucksShortcode("sc_table", scTable);
-  eleventyConfig.addNunjucksShortcode("sample_image", sampleImage);
+  eleventyConfig.addNunjucksAsyncShortcode("sc_table", scTable);
 
   eleventyConfig.addLayoutAlias("report", "report.njk");
 
-  eleventyConfig.addPlugin(markdownShortcode);
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(syntaxHighlightPlugin);
 
-  // create a collection of issues specific to each report, sorted by success criterion
-  for (let i = 0; i < reports.length; i++) {
-    eleventyConfig.addCollection(reports[i], function (collectionApi) {
-      return collectionApi
-        .getFilteredByGlob(`${reportsFolderRelative}/${reports[i]}/**/*.md`)
-        .filter(
-          (item) => !(item.data.sc === "none") && !(item.data.sc === undefined)
-        )
-        .sort((a, b) => {
-          const numbA = sanitizeNumber(a.data.sc);
-          const numbB = sanitizeNumber(b.data.sc);
-          if (numbA < numbB) return -1;
-          if (numbA > numbB) return 1;
-          return 0;
-        });
-    });
-  }
+  eleventyConfig.addCollection("issues", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/issues/*.md")
+      .filter(
+        (item) => !(item.data.sc === "none") && !(item.data.sc === undefined)
+      )
+      .sort((a, b) => {
+        const numbA = sanitizeNumber(a.data.sc);
+        const numbB = sanitizeNumber(b.data.sc);
+        if (numbA < numbB) return -1;
+        if (numbA > numbB) return 1;
+        return 0;
+      });
+  });
 
-  // create a collection of “tips” specific to each report (all issues with sc set to "none")
-  for (let i = 0; i < reports.length; i++) {
-    eleventyConfig.addCollection(
-      `${reports[i]}-tips`,
-      function (collectionApi) {
-        return collectionApi
-          .getFilteredByGlob(`${reportsFolderRelative}/${reports[i]}/**/*.md`)
-          .filter((item) => item.data.sc === "none");
-      }
-    );
-  }
+  eleventyConfig.addCollection("tips", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/issues/*.md")
+      .filter((item) => item.data.sc === "none");
+  });
 
-  // Base Config
+  eleventyConfig.addPassthroughCopy({
+    "src/admin/config.yml": "admin/config.yml",
+  });
+
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/decap-cms/dist/decap-cms.js": "lib/cms/decap-cms.js",
+    "node_modules/decap-cms/dist/decap-cms.js.map": "lib/cms/decap-cms.js.map",
+    "node_modules/prop-types/prop-types.min.js": "lib/cms/prop-types.min.js",
+    "node_modules/react/umd/react.development.js":
+      "lib/cms/react.development.js",
+    "node_modules/react/umd/react.production.min.js":
+      "lib/cms/react.production.min.js",
+  });
+
   return {
     dir: {
       input: "src",
@@ -80,4 +67,4 @@ module.exports = function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
   };
-};
+}

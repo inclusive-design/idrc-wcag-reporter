@@ -1,19 +1,23 @@
-const sc_to_slug = require("../_data/sc_to_slug.json");
-const translations = require("../_data/translations.json");
+import successCriteria from "../_data/successCriteria.js";
 
-function scUri(sc, targetWcagVersion, language) {
-  const base_uri = translations["base_uri"][language];
-  let slug;
+export default async function (sc, targetWcagVersion) {
+  const base_uri = `https://www.w3.org/WAI/WCAG22/quickref/?versions=${targetWcagVersion}`;
 
-  if (sc_to_slug[targetWcagVersion] && 
-      sc_to_slug[targetWcagVersion][language] &&
-      sc_to_slug[targetWcagVersion][language][sc]) {
-    slug = sc_to_slug[targetWcagVersion][language][sc]["id"] || "";
+  let criteria, slug;
+
+  try {
+    criteria = await successCriteria();
+  } catch (error) {
+    console.error(`Fetch failed in scUri.js. ${error}`);
+  }
+
+  if (criteria[sc]) {
+    slug = criteria[sc]["id"] || "";
   } else {
-    console.error(`‼️ Cannot generate URL for ${sc}, as it cannot be found in the data. Add it to "./_data/sc_to_slug.json"`);
-    return
+    console.error(
+      `Cannot generate URL for ${sc}, as it cannot be found in the data."`
+    );
+    return;
   }
   return `${base_uri}#${slug}`;
- }
-
- module.exports = scUri;
+}

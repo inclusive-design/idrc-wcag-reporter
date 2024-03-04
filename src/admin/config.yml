@@ -1,0 +1,122 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: src/_assets/uploads
+public_folder: /_assets/uploads
+local_backend: true
+editor:
+  preview: true
+collections:
+  - label: Report
+    name: report
+    editor:
+      preview: false
+    files:
+      - label: Report Data
+        name: reportData
+        file: src/index.md
+        fields:
+          - label: Layout
+            name: layout
+            widget: hidden
+            default: "report"
+          - label: Tags
+            name: tags
+            widget: hidden
+            default: "reports"
+          - label: Title
+            name: title
+            widget: string
+          - name: "evaluator"
+            label: "Evaluator"
+            widget: "string"
+          - name: "commissioner"
+            label: "Commissioner"
+            widget: "string"
+          - name: targetLevel
+            label: Target Level
+            widget: select
+            options: [A, AA, AAA]
+          - name: targetWcagVersion
+            label: Target WCAG Version
+            widget: select
+            options: ["2.0", "2.1", "2.2"]
+          - name: date
+            label: Date
+            widget: datetime
+          - name: scope
+            label: Scope
+            widget: list
+            hint: Enter page names or URLs in a comma-separated list.
+          - name: out_of_scope
+            label: Out of scope
+            widget: list
+            hint: Enter page names or URLs in a comma-separated list.
+          - name: specialRequirements
+            label: Special Requirements
+            widget: text
+          - name: baseline
+            label: Accessibility support
+            widget: list
+            hint: Enter browsers and assistive technologies with which the website is expected to work in a comma-separated list.
+          - name: technologies
+            label: Technologies used
+            widget: list
+            hint: Enter technologies used to build the website in a comma-separated list.
+          - name: samples
+            label: Samples
+            widget: list
+            fields:
+            - { name: "title", label: "Title", widget: "string" }
+            - { name: "url", label: "URL", widget: "string" }
+            - { name: "description", label: "Description", widget: "text" }
+          - name: issues
+            label: Issues link
+            widget: string
+            hint: Enter the link to the website's issues page on GitHub, Gitlab or JIRA.
+            required: false
+          - name: body
+            label: Executive summary
+            widget: markdown
+  - label: Issues
+    label_singular: Issue
+    name: issue
+    folder: src/issues
+    extension: md
+    create: true
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Success Criteria, name: sc, widget: string }
+      - {
+          label: Severity,
+          name: severity,
+          widget: select,
+          options: ["Unknown", "Low", "Medium", "High"],
+          required: false,
+        }
+      - {
+          label: Difficulty,
+          name: difficulty,
+          widget: select,
+          options: ["Unknown", "Low", "Medium", "High"],
+          required: false,
+        }
+      - { label: Sample Pages, name: sample, widget: string, default: "all" }
+      - {
+          label: Screenshots,
+          name: screenshots,
+          widget: object,
+          required: false,
+          fields:
+            [
+              { label: "Screenshot", name: "src", widget: "image" },
+              { label: "Alt Text", name: "alt", widget: "string" },
+              { label: "Caption", name: "caption", widget: "text" },
+            ],
+        }
+      - {
+          label: Body,
+          name: body,
+          widget: markdown,
+          default: "#### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n#### Potential Solutions\n\nDescribe some potential solutions.\n\n#### Read more\n\nInclude some links to relevant examples and/or articles.",
+        }

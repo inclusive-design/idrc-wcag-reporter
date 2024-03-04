@@ -6,12 +6,6 @@ title: Focus style missing
 sample: all
 ---
 
-<figure>
-
-![alt text](images/default-screenshot.png) 
-
-</figure>
-
 #### Problem
 
 Focus styles have been removed through the website's stylesheets:

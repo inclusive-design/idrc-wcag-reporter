@@ -1,56 +1,76 @@
-const translations = require("../_data/translations.json");
-const totalsperLevel = require("../_data/totals_per_level.json");
-const countSCOnce = require("./countSCOnce.js");
+import totalsByLevel from "../_data/totalsByLevel.js";
+import countSuccesCriterionOnce from "./countSuccessCriteriaOnce.js";
 
-function scTable(allIssues, language, targetLevel, targetWcagVersion) {
-  if (!allIssues || !language || !targetLevel) {
-    return ``
+export default async function scTable(
+  allIssues,
+  targetLevel,
+  targetWcagVersion
+) {
+  if (!allIssues || !targetLevel) {
+    return ``;
   }
- 
+
+  let totals_by_level;
+
+  try {
+    totals_by_level = await totalsByLevel();
+  } catch (error) {
+    console.error(`Fetch failed in scTable.js. ${error}`);
+  }
+
   // use string representation of WCAG version to avoid unwanted conversion from e.g. 2.0 to index 2
-  const totals = totalsperLevel[targetWcagVersion.toString()][targetLevel];
+  const totals = totals_by_level[targetWcagVersion.toString()][targetLevel];
 
-  let perceivable = allIssues.filter(issue => issue.data.sc && issue.data.sc.startsWith("1.")).reduce(countSCOnce, []);
-  let operable = allIssues.filter(issue => issue.data.sc && issue.data.sc.startsWith("2.")).reduce(countSCOnce, []);
-  let understandable = allIssues.filter(issue => issue.data.sc && issue.data.sc.startsWith("3.")).reduce(countSCOnce, []);
-  let robust = allIssues.filter(issue => issue.data.sc && issue.data.sc.startsWith("4.")).reduce(countSCOnce, []);
+  let perceivable = allIssues
+    .filter((issue) => issue.data.sc && issue.data.sc.startsWith("1."))
+    .reduce(countSuccesCriterionOnce, []);
+  let operable = allIssues
+    .filter((issue) => issue.data.sc && issue.data.sc.startsWith("2."))
+    .reduce(countSuccesCriterionOnce, []);
+  let understandable = allIssues
+    .filter((issue) => issue.data.sc && issue.data.sc.startsWith("3."))
+    .reduce(countSuccesCriterionOnce, []);
+  let robust = allIssues
+    .filter((issue) => issue.data.sc && issue.data.sc.startsWith("4."))
+    .reduce(countSuccesCriterionOnce, []);
 
-  let totalConforming = 
-    (totals.perceivable - perceivable.length) + 
+  let totalConforming =
+    totals.perceivable -
+    perceivable.length +
     (totals.operable - operable.length) +
-    (totals.understandable - understandable.length) + 
+    (totals.understandable - understandable.length) +
     (totals.robust - robust.length);
   return `
   <table class="sc-table">
   <thead>
     <tr>
-      <td>${translations["principle"][language]}</td>
-      <td>${translations["results_per_principle"][language]}</td>
+      <td>Principle</td>
+      <td>Results by principle</td>
     </tr>
   </thead>
   <tbody>
   <tr>
-    <td>${translations["perceivable"][language]}</td>
-    <td>${totals.perceivable - perceivable.length} ${translations["of"][language]} ${totals.perceivable}</td>
+    <td>Perceivable</td>
+    <td>${totals.perceivable - perceivable.length} of ${totals.perceivable}</td>
   </tr>
   <tr>
-      <td>${translations["operable"][language]}</td>
-      <td>${totals.operable - operable.length} ${translations["of"][language]} ${totals.operable} </td>
+      <td>Operable</td>
+      <td>${totals.operable - operable.length} of ${totals.operable} </td>
   </tr>
   <tr>
-      <td>${translations["understandable"][language]}</td>
-      <td>${totals.understandable - understandable.length} ${translations["of"][language]} ${totals.understandable} </td>
+      <td>Understandable</td>
+      <td>${totals.understandable - understandable.length} of ${
+    totals.understandable
+  } </td>
   </tr>
   <tr>
-      <td>${translations["robust"][language]}</td>
-      <td>${totals.robust - robust.length} ${translations["of"][language]} ${totals.robust} </td>
+      <td>Robust</td>
+      <td>${totals.robust - robust.length} of ${totals.robust} </td>
   </tr>
   <tr>
-      <td>${translations["total"][language]}</td>
-      <td>${totalConforming} ${translations["of"][language]} ${totals.all}</td>
+      <td>Total</td>
+      <td>${totalConforming} of ${totals.all}</td>
   </tr>
   <tbody>
   </table>`;
 }
-
-module.exports = scTable;
