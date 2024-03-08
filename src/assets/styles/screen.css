@@ -1,0 +1,5 @@
+@media (width >= 30em) {
+	.issue-meta div {
+		width: 45%;
+	}
+}

@@ -17,7 +17,7 @@ collections:
           - name: body
             label: About this report
             widget: markdown
-      - label: Report Data
+      - label: Report
         name: report
         file: src/report/index.md
         fields:

@@ -54,6 +54,7 @@ export default function eleventy(eleventyConfig) {
 	});
 
 	eleventyConfig.addPassthroughCopy({
+		'node_modules/a11y-syntax-highlighting/dist/prism/a11y-dark.min.css': 'assets/styles/a11y-dark.min.css',
 		'node_modules/decap-cms/dist/decap-cms.js': 'lib/cms/decap-cms.js',
 		'node_modules/decap-cms/dist/decap-cms.js.map':
             'lib/cms/decap-cms.js.map',

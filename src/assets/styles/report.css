@@ -1,3 +1,63 @@
+@font-face {
+	font-display: swap;
+	font-family: 'Noto Sans Mono';
+	font-style: normal;
+	font-weight: normal;
+	src:
+		url('../fonts/noto-sans-mono-v30-latin-regular.woff2') format('woff2'),
+		url('../fonts/noto-sans-mono-v30-latin-regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Noto Serif';
+	font-style: normal;
+	font-weight: normal;
+	src:
+		url('../fonts/noto-serif-v23-latin-regular.woff2') format('woff2'),
+		url('../fonts/noto-serif-v23-latin-regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Noto Serif';
+	font-style: italic;
+	font-weight: normal;
+	src:
+		url('../fonts/noto-serif-v23-latin-italic.woff2') format('woff2'),
+		url('../fonts/noto-serif-v23-latin-italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Noto Serif';
+	font-style: normal;
+	font-weight: bold;
+	src:
+		url('../fonts/noto-serif-v23-latin-700.woff2') format('woff2'),
+		url('../fonts/noto-serif-v23-latin-700.ttf') format('truetype');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Noto Serif';
+	font-style: italic;
+	font-weight: bold;
+	src:
+		url('../fonts/noto-serif-v23-latin-700italic.woff2') format('woff2'),
+		url('../fonts/noto-serif-v23-latin-700italic.ttf') format('truetype');
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	max-width: 50em;
+	margin: 2em auto;
+	font-family: 'Noto Serif', Georgia, serif;
+}
+
 h1 {
 	font-weight: normal;
 	font-size: 2em;
@@ -47,22 +107,31 @@ img {
 	max-height: 50%;
 }
 
+a,
+a:visited {
+	color: #191970;
+}
+
 a svg {
 	vertical-align: middle;
 }
 
 p code,
 li code {
-	font-family: Monaco, monospace;
+	font-family: 'Noto Sans Mono', monospace;
 	margin: 0 0.125em;
-	color: #d5048d;
+	color: #d91e18;
 	border: 1px solid #ccc;
 	padding: 0 0.125em;
 	display: inline-block;
 }
 
-code {
-	font-size: 90%;
+pre,
+code,
+code[class*='language-'],
+pre[class*='language-'] {
+	font-family: 'Noto Sans Mono', monospace;
+	font-size: 0.875rem;
 }
 
 .issue {
@@ -73,13 +142,14 @@ code {
 }
 
 .issue-title {
+	display: flex;
+	flex-direction: column;
 	margin: -1rem -1rem 2rem;
 	padding: 0.75rem 1em;
 	background-color: #e6e6fa;
 }
 
-.issue-title::before {
-	content: attr(data-issue) ' ' counter(issue-number);
+.issue-title .number {
 	display: block;
 	padding: 0.25em 0.5em;
 	font-size: 65%;
@@ -87,7 +157,8 @@ code {
 	color: #fff;
 	border: none;
 	margin-bottom: 0.4em;
-	width: max-content;
+	margin-right: auto;
+	width: auto;
 }
 
 .issue-meta {
@@ -99,8 +170,8 @@ code {
 
 .issue-meta dl {
 	display: flex;
-	margin: 0;
 	flex-flow: wrap;
+	margin: 0;
 }
 
 .issue-meta dd {
@@ -111,12 +182,6 @@ code {
 .issue-meta div {
 	width: 100%;
 	margin: 0 2.5% 2.5% 0;
-}
-
-@media (min-width: 30em) {
-	.issue-meta div {
-		width: 45%;
-	}
 }
 
 .sample-list {
@@ -141,10 +206,9 @@ code {
 }
 
 .sample-list a {
-	font-family: Monaco, monospace;
-	font-size: 0.75em;
-	text-decoration: none;
-	color: #808080;
+	font-family: 'Noto Sans Mono', monospace;
+	font-size: 0.75rem;
+	color: #191970;
 	display: block;
 	margin: 0.5em 0;
 	white-space: nowrap;
@@ -157,7 +221,6 @@ code {
 .sample-list img {
 	margin-right: 2em;
 	border: 1px solid #ccc;
-	box-shadow: 0 0 8px -1px #ccc;
 	max-width: 12em;
 	max-height: 100%;
 }
@@ -171,20 +234,17 @@ code {
 	max-width: 11em;
 }
 
-@media not print {
-	.wcag-link {
-		text-decoration: none;
-		background-color: #191970;
-		color: #fff;
-		padding: 0.25em 1em;
-		font-size: 0.75em;
-		border-radius: 1em;
-	}
+.wcag-link {
+	text-decoration: none;
+	background-color: #191970;
+	color: #fff;
+	padding: 0.25em 1em;
+	font-size: 0.75em;
+	border-radius: 1em;
 }
 
 .external {
 	clip: rect(0 0 0 0);
-	clip-path: inset(100%);
 	height: 1px;
 	overflow: hidden;
 	position: absolute;
@@ -199,7 +259,7 @@ table {
 td,
 th {
 	border-bottom: 1px solid #808080;
-	padding: 0.5em 0 0.5em 3em;
+	padding: 0.5em 3em 0.5em 0;
 	text-align: start;
 }
 
@@ -209,36 +269,4 @@ th {
 
 .issue-meta a + a {
 	margin-left: 0.5rem;
-}
-
-/* For Prince */
-
-@media print {
-	h1 {
-		/* stylelint-disable-next-line function-no-unknown */
-		string-set: doctitle content();
-	}
-
-	body {
-		font-size: 10pt;
-	}
-
-	.issue {
-		border: none;
-		padding: 0;
-		break-before: page;
-	}
-
-	.issue-meta {
-		background-color: transparent;
-		border-top: 2px solid #dcdcdc;
-	}
-
-	.issue-meta div {
-		margin-bottom: 1em;
-	}
-
-	.issue img {
-		max-height: 5cm;
-	}
 }

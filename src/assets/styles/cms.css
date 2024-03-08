@@ -1,3 +1,16 @@
 .frame-content {
 	padding: 1.5rem;
 }
+
+.frame-content pre {
+	background: #2b2b2b;
+	padding: 1em;
+	margin: 0.5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+.frame-content code[class*='language-'],
+.frame-content pre[class*='language-'] {
+	color: #f8f8f2;
+}
