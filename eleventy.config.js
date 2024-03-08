@@ -5,7 +5,7 @@ import scUri from './src/_utils/sc-uri.js';
 import sanitizeNumber from './src/_utils/sanitize-number.js';
 
 export default function eleventy(eleventyConfig) {
-	eleventyConfig.addFilter('sc_uri', scUri);
+	eleventyConfig.addFilter('scUri', scUri);
 
 	eleventyConfig.addNunjucksAsyncShortcode('scTable', scTable);
 

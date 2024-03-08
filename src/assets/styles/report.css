@@ -47,6 +47,10 @@ img {
 	max-height: 50%;
 }
 
+a svg {
+	vertical-align: middle;
+}
+
 p code,
 li code {
 	font-family: Monaco, monospace;
@@ -83,6 +87,7 @@ code {
 	color: #fff;
 	border: none;
 	margin-bottom: 0.4em;
+	width: max-content;
 }
 
 .issue-meta {
@@ -145,8 +150,8 @@ code {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 90vw;
-	inline-size: 35em;
+	max-width: 90%;
+	width: 35em;
 }
 
 .sample-list img {
@@ -177,7 +182,7 @@ code {
 	}
 }
 
-.wcag-link .external {
+.external {
 	clip: rect(0 0 0 0);
 	clip-path: inset(100%);
 	height: 1px;
@@ -202,6 +207,9 @@ th {
 	font-weight: bold;
 }
 
+.issue-meta a + a {
+	margin-left: 0.5rem;
+}
 
 /* For Prince */
 
@@ -233,48 +241,4 @@ th {
 	.issue img {
 		max-height: 5cm;
 	}
-	@page {
-		margin: 36pt;
-		size: a4;
-		@bottom-left {
-			font-size: smaller;
-			color: #666;
-			/* stylelint-disable-next-line function-no-unknown */
-			content: string(doctitle);
-		}
-		@bottom-right {
-			color: #666;
-			font-size: smaller;
-			content: counter(page) ' / ' counter(pages);
-		}
-	}
-
-	/* stylelint-disable-next-line at-rule-no-unknown */
-	@page: first {
-		background-color: #eee;
-		@bottom-left {
-			content: '';
-		}
-		@bottom-right {
-			content: '';
-		}
-	}
-}
-
-img,
-input[type=''image] {
-	/* stylelint-disable-next-line property-no-unknown */
-	prince-pdf-tag-type: figure;
-	/* stylelint-disable-next-line property-no-unknown */
-	prince-alt-text: attr(alt);
-}
-
-figure {
-	/* stylelint-disable-next-line property-no-unknown */
-	prince-pdf-tag-type: div;
-}
-
-figcaption {
-	/* stylelint-disable-next-line property-no-unknown */
-	prince-pdf-tag-type: caption;
 }

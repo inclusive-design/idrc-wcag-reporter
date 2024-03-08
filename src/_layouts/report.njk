@@ -14,7 +14,7 @@ layout: base
 
   <dl>
     <dt>Evaluated by</dt>
-    <dd>{{ evaluator }}</dd>
+    <dd>{% for evaluator in evaluators %}{{ evaluator }}{% if not loop.last%}, {% endif %}{% endfor %}</dd>
     <dt>Commissioned by</dt>
     <dd>{{ commissioner }}</dd>
     <dt>Target</dt>
@@ -35,9 +35,8 @@ layout: base
   {% scTable issueList, targetLevel, targetWcagVersion %}
 </section>
 
-<section id="explanation-of-report">
-  <h2>About this report</h2>
-  {% renderFile "./src/_includes/about-this-report.md" %}
+<section id="about-this-report">
+  {% renderFile "./src/_includes/about.md" %}
 </section>
 
 <section id="scope">
@@ -47,23 +46,29 @@ layout: base
   <p>Scope:
   <ul>
     {% for scope in scope %}
-    <li>{{ scope }}</li>
+    <li id="{{ scope.title | slugify }}">
+      <a href="{{ scope.url }}">{{ scope.title }}<span class="external">(external link)</span> <svg aria-hidden="true" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="14" width="16" style="vertical-align: middle;"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14 5C13.4477 5 13 4.55228 13 4C13 3.44772 13.4477 3 14 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4L21 10C21 10.5523 20.5523 11 20 11C19.4477 11 19 10.5523 19 10L19 6.41422L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929L17.5858 5H14ZM3 7C3 5.89543 3.89543 5 5 5H10C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7H5V19H17V14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V19C19 20.1046 18.1046 21 17 21H5C3.89543 21 3 20.1046 3 19V7Z" fill="currentColor"></path></svg></a>
+      {% if scope.description %}<p>{{ scope.description }}</p>{% endif %}
+    </li>
     {% endfor %}
   </ul>
   {% endif %}
-  {% if out_of_scope %}
+  {% if outOfScope %}
   <p>Not in scope:
   <ul>
-    {% for out_of_scope in out_of_scope %}
-    <li>{{ out_of_scope }}</li>
+    {% for outOfScope in outOfScope %}
+    <li>
+      <a href="{{ outOfScope.url }}">{{ outOfScope.title }}<span class="external">(external link)</span> <svg aria-hidden="true" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="14" width="16" style="vertical-align: middle;"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14 5C13.4477 5 13 4.55228 13 4C13 3.44772 13.4477 3 14 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4L21 10C21 10.5523 20.5523 11 20 11C19.4477 11 19 10.5523 19 10L19 6.41422L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929L17.5858 5H14ZM3 7C3 5.89543 3.89543 5 5 5H10C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7H5V19H17V14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V19C19 20.1046 18.1046 21 17 21H5C3.89543 21 3 20.1046 3 19V7Z" fill="currentColor"></path></svg></a>
+      {% if outOfScope.description %}<p>{{ outOfScope.description }}</p>{% endif %}
+    </li>
     {% endfor %}
     {% endif %}
   </ul>
-  <h3>Accessibility support</h3>
-  <p>The audited website should work in at least the following browsers and assistive technologies:</p>
+  <h3>Tools used</h3>
+  <p>In conducting this audit, the following tools were used:</p>
   <ul>
-    {% for baseline in baseline %}
-    <li>{{ baseline }}</li>
+    {% for tool in tools %}
+    <li>{{ tool.name }}{% if tool.version %} {{ tool.version }}{% endif %}</li>
     {% endfor %}
   </ul>
   <h3>Technologies used</h3>
@@ -71,24 +76,6 @@ layout: base
   <ul>
     {% for technology in technologies %}
     <li>{{ technology }}</li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section id="sample">
-  <h2>Sample</h2>
-  <p>Representative sample</p>
-  <ul class="sample-list">
-    {% for sample in samples %}
-    <li id="{{ sample.title | slug }}">
-      <div>
-        {# <img src="{% sample_image sample.id, page.fileSlug %}" alt="" /> #}
-      </div>
-      <div>
-        <strong>{{ sample.title }}</strong>
-        <a href="{{ sample.url }}">{{ sample.url }}</a>
-        <p>{{ sample.description }}</p></li>
-      </div>
     {% endfor %}
   </ul>
 </section>
@@ -114,10 +101,10 @@ layout: base
             <dt>WCAG Criteria: </dt>
             <dd>
               {% for sc in issue.data.sc | sort %}
-              <a class="wcag-link" href="{{ sc | sc_uri(targetWcagVersion) }}">
+              <a class="wcag-link" href="{{ sc | scUri(targetWcagVersion) }}">
                 {{ sc }}: {{ successCriteria[sc]['name'] }}
                 <span class="external">(external link)</span>
-                <svg aria-hidden="true" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="14" width="16" style="vertical-align: middle;"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14 5C13.4477 5 13 4.55228 13 4C13 3.44772 13.4477 3 14 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4L21 10C21 10.5523 20.5523 11 20 11C19.4477 11 19 10.5523 19 10L19 6.41422L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929L17.5858 5H14ZM3 7C3 5.89543 3.89543 5 5 5H10C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7H5V19H17V14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V19C19 20.1046 18.1046 21 17 21H5C3.89543 21 3 20.1046 3 19V7Z" fill="currentColor"></path></svg>
+                <svg aria-hidden="true" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="14" width="16"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14 5C13.4477 5 13 4.55228 13 4C13 3.44772 13.4477 3 14 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4L21 10C21 10.5523 20.5523 11 20 11C19.4477 11 19 10.5523 19 10L19 6.41422L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929L17.5858 5H14ZM3 7C3 5.89543 3.89543 5 5 5H10C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7H5V19H17V14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V19C19 20.1046 18.1046 21 17 21H5C3.89543 21 3 20.1046 3 19V7Z" fill="currentColor"></path></svg>
               </a>
               {% endfor %}
             </dd>

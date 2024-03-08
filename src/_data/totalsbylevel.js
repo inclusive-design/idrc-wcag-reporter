@@ -1,4 +1,4 @@
-import successCriteria from './success-criteria.js';
+import successCriteria from './successcriteria.js';
 
 export default async function totalsByLevel() {
 	const totals = {

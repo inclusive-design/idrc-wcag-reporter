@@ -29,6 +29,6 @@ export default async function successCriteria() {
 
 		return results;
 	} catch (error) {
-		console.error(`Fetch failed in successCriteria.js. ${error}`);
+		console.error(`Fetch failed in successcriteria.js. ${error}`);
 	}
 }

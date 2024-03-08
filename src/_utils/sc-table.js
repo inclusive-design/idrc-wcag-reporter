@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-array-callback-reference */
 /* eslint-disable unicorn/no-array-reduce */
-import totalsByLevel from '../_data/totals-by-level.js';
+import totalsByLevel from '../_data/totalsbylevel.js';
 import countSuccessCriterionOnce from './count-success-criteria-once.js';
 
 export default async function scTable(

@@ -9,27 +9,24 @@ editor:
 collections:
   - label: Report
     name: report
-    editor:
-      preview: false
     files:
+      - label: About
+        name: about
+        file: src/_includes/about.md
+        fields:
+          - name: body
+            label: About this report
+            widget: markdown
       - label: Report Data
-        name: reportData
+        name: report
         file: src/report/index.md
         fields:
-          - label: Layout
-            name: layout
-            widget: hidden
-            default: "report"
-          - label: Tags
-            name: tags
-            widget: hidden
-            default: "reports"
           - label: Title
             name: title
             widget: string
-          - name: "evaluator"
-            label: "Evaluator"
-            widget: "string"
+          - name: "evaluators"
+            label: "Evaluators"
+            widget: "list"
           - name: "commissioner"
             label: "Commissioner"
             widget: "string"
@@ -47,37 +44,43 @@ collections:
           - name: specialRequirements
             label: Special Requirements
             widget: text
+          - name: body
+            label: Executive summary
+            widget: markdown
           - name: scope
-            label: Scope
-            widget: list
-            hint: Enter page names or URLs in a comma-separated list.
-          - name: out_of_scope
-            label: Out of scope
-            widget: list
-            hint: Enter page names or URLs in a comma-separated list.
-          - name: baseline
-            label: Accessibility support
-            widget: list
-            hint: Enter browsers and assistive technologies with which the website is expected to work in a comma-separated list.
-          - name: technologies
-            label: Technologies used
-            widget: list
-            hint: Enter technologies used to build the website in a comma-separated list.
-          - name: samples
-            label: Samples
+            label: In scope
+            label_singular: in scope item
             widget: list
             fields:
             - { name: "title", label: "Title", widget: "string" }
             - { name: "url", label: "URL", widget: "string" }
-            - { name: "description", label: "Description", widget: "text" }
+            - { name: "description", label: "Description", widget: "text", required: false }
+          - name: outOfScope
+            label: Out of scope
+            label_singular: out of scope item
+            widget: list
+            fields:
+            - { name: "title", label: "Title", widget: "string" }
+            - { name: "url", label: "URL", widget: "string" }
+          - name: tools
+            label: Tools used
+            label_singular: tool
+            widget: list
+            summary: '{{fields.name}} {{fields.version}}'
+            fields:
+            - { name: "name", label: "Tool", widget: "string" }
+            - { name: "version", label: "Version", widget: "string", required: false }
+            hint: Enter browsers and assistive technologies used in auditing the website.
+          - name: technologies
+            label: Technologies used
+            widget: list
+            default: [HTML, CSS, JavaScript, WAI-ARIA, SVG]
+            hint: Enter technologies used to build the website in a comma-separated list.
           - name: issues
             label: Issues link
             widget: string
             hint: Enter the link to the website's issues page on GitHub, Gitlab or JIRA.
             required: false
-          - name: body
-            label: Executive summary
-            widget: markdown
   - label: Issues
     label_singular: Issue
     name: issue

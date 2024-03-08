@@ -1,4 +1,4 @@
-import successCriteria from '../_data/success-criteria.js';
+import successCriteria from '../_data/successcriteria.js';
 
 export default async function scUri(sc, targetWcagVersion) {
 	const baseUri = `https://www.w3.org/WAI/WCAG22/quickref/?versions=${targetWcagVersion}`;
