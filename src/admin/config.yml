@@ -14,7 +14,7 @@ collections:
     files:
       - label: Report Data
         name: reportData
-        file: src/index.md
+        file: src/report/index.md
         fields:
           - label: Layout
             name: layout
@@ -44,6 +44,9 @@ collections:
           - name: date
             label: Date
             widget: datetime
+          - name: specialRequirements
+            label: Special Requirements
+            widget: text
           - name: scope
             label: Scope
             widget: list
@@ -52,9 +55,6 @@ collections:
             label: Out of scope
             widget: list
             hint: Enter page names or URLs in a comma-separated list.
-          - name: specialRequirements
-            label: Special Requirements
-            widget: text
           - name: baseline
             label: Accessibility support
             widget: list
@@ -81,7 +81,7 @@ collections:
   - label: Issues
     label_singular: Issue
     name: issue
-    folder: src/issues
+    folder: src/report/issues
     extension: md
     create: true
     fields:

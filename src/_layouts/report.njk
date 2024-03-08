@@ -2,13 +2,13 @@
 layout: base
 ---
 
-<link rel="stylesheet" href="../../assets/styles/report.css">
+<link rel="stylesheet" href="assets/styles/report.css">
 
 {% set issueList = collections.issues %}
 {% set tipsList = collections.tips %}
 
 <section id="start">
-  <img src="../../assets/images/logo.svg" alt="" class="logo">
+  <img src="assets/images/logo.svg" alt="" class="logo">
 
   <h1>Accessibility Conformance Report for {{ title }}</h1>
 
@@ -21,9 +21,9 @@ layout: base
     <dd>WCAG {{ targetWcagVersion }}, Level {{ targetLevel }}</dd>
     <dt>Date</dt>
     <dd>{{ date }}</dd>
-    {% if special_requirements %}
+    {% if specialRequirements %}
     <dt>Special requirements</dt>
-    <dd>{{ special_requirements }}</dd>
+    <dd>{{ specialRequirements }}</dd>
     {% endif %}
   </dl>
 </section>
@@ -32,7 +32,7 @@ layout: base
   <h2>Executive summary</h2>
   {{ content | safe }}
   <h3>Results per principle</h3>
-  {% sc_table issueList, targetLevel, targetWcagVersion %}
+  {% scTable issueList, targetLevel, targetWcagVersion %}
 </section>
 
 <section id="explanation-of-report">
@@ -98,7 +98,7 @@ layout: base
   <ol>
   {% for issue in issueList %}
     {% if issue.fileSlug !== page.fileSlug %}
-    <li><a href="#{{ issue.data.title  | slugify }}">{{ issue.data.title }}</a> ({{ issue.data.sc}})</li>
+    <li><a href="#{{ issue.data.title  | slugify }}">{{ issue.data.title }}</a> ({% for sc in issue.data.sc | sort %}{{ sc }}{% if not loop.last%}, {% endif %}{% endfor %})</li>
     {% endif %}
   {% endfor %}
   </ol>
@@ -111,23 +111,23 @@ layout: base
       <div class="issue-meta">
         <dl>
           <div>
-            <dt>WCAG Criterion: </dt>
+            <dt>WCAG Criteria: </dt>
             <dd>
-              <a class="wcag-link" href="{{ issue.data.sc | sc_uri(targetWcagVersion) }}">
-                {{ issue.data.sc }}: {{ successCriteria[issue.data.sc]['name'] }}
+              {% for sc in issue.data.sc | sort %}
+              <a class="wcag-link" href="{{ sc | sc_uri(targetWcagVersion) }}">
+                {{ sc }}: {{ successCriteria[sc]['name'] }}
                 <span class="external">(external link)</span>
                 <svg aria-hidden="true" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="14" width="16" style="vertical-align: middle;"><path xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14 5C13.4477 5 13 4.55228 13 4C13 3.44772 13.4477 3 14 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4L21 10C21 10.5523 20.5523 11 20 11C19.4477 11 19 10.5523 19 10L19 6.41422L9.70711 15.7071C9.31658 16.0976 8.68342 16.0976 8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929L17.5858 5H14ZM3 7C3 5.89543 3.89543 5 5 5H10C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7H5V19H17V14C17 13.4477 17.4477 13 18 13C18.5523 13 19 13.4477 19 14V19C19 20.1046 18.1046 21 17 21H5C3.89543 21 3 20.1046 3 19V7Z" fill="currentColor"></path></svg>
               </a>
+              {% endfor %}
             </dd>
           </div>
-          <div>
-            <dt>Difficulty: </dt>
-            <dd>{{ issue.data.difficulty }}</a></dd>
-          </div>
+          {% if issue.data.severity == 'High' %}
           <div>
             <dt>Severity: </dt>
             <dd>{{ issue.data.severity }}</dd>
           </div>
+          {% endif %}
           <div>
             <dt>Sample: </dt>
             {% if issue.data.sample == "all" %}
@@ -145,7 +145,7 @@ layout: base
 
 {% if tipsList.length %}
 <section id="tips">
-  <h2>{{ translations.tips[language] }}</h2>
+  <h2>Tips</h2>
   <ol>
   {% for issue in tipsList %}
     {% if issue.fileSlug !== page.fileSlug %}
@@ -162,19 +162,11 @@ layout: base
       <div class="issue-meta">
         <dl>
           <div>
-            <dt>{{ translations.difficulty[language] }}: </dt>
-            <dd>{{ issue.data.difficulty }}</a></dd>
-          </div>
-          <div>
-            <dt>{{ translations.severity[language] }}: </dt>
-            <dd>{{ issue.data.severity }}</dd>
-          </div>
-          <div>
-            <dt>{{ translations.sample[language] }}: </dt>
+            <dt>Sample: </dt>
             {% if issue.data.sample == "all" %}
-            <dd>{{ translations.all_pages[language] }}</dd>
+            <dd>All pages</dd>
             {% else %}
-            <dd><a href="#{{ issue.data.sample }}">{{ issue.data.sample }}</a></dd>
+            <dd><a href="#{{ issue.data.sample | slug }}">{{ issue.data.sample }}</a></dd>
             {% endif %}
           </div>
         </dl>

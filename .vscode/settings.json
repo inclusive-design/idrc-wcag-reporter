@@ -1,0 +1,7 @@
+{
+    "prettier.enable": false,
+    "prettier.embeddedLanguageFormatting": "off",
+    "editor.formatOnSave": true,
+    "xo.enable": true,
+    "xo.format.enable": true,
+}

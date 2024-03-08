@@ -1,5 +1,7 @@
 ---
-sc: 2.4.7
+sc:
+  - 2.4.7
+  - 2.4.6
 severity: High
 difficulty: Low
 title: Focus style missing

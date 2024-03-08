@@ -1,28 +1,30 @@
 * {
-    box-sizing: border-box;
-    transition: all 0.2s;
+	box-sizing: border-box;
 }
 
-body { 
-    max-width: 50em;
-    margin: 2em auto;
-    font-family: "Noto Serif", "Georgia", serif;
+body {
+	max-width: 50em;
+	margin: 2em auto;
+	font-family: 'Noto Serif', Georgia, serif;
 }
 
 .report-list {
-    padding: 0;
+	padding: 0;
 }
-    .report-list li {
-        list-style-type: none;
-    }
-    .report-list a {
-        padding: .5em;
-        display: block;
-        background-color: whitesmoke;
-        margin-bottom: .25em;
-        color: black;
-        text-decoration: none;
-    }
-    .report-list a:hover {
-        background-color: gainsboro;
-    }
+
+.report-list li {
+	list-style-type: none;
+}
+
+.report-list a {
+	padding: 0.5em;
+	display: block;
+	background-color: #f5f5f5;
+	margin-bottom: 0.25em;
+	color: #000;
+	text-decoration: none;
+}
+
+.report-list a:hover {
+	background-color: #dcdcdc;
+}

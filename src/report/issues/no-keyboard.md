@@ -1,9 +1,10 @@
 ---
-sc: 2.1.1
+sc:
+  - 2.1.1
 severity: High
 difficulty: High
 title: Main menu does not work with keyboard
-sample: blog-post
+sample: Blog post
 ---
 
 #### Problem
