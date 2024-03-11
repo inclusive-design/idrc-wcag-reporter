@@ -3,9 +3,9 @@ body {
 }
 
 .issue {
+	break-inside: avoid;
 	border: none;
 	padding: 0;
-	break-before: page;
 }
 
 .issue-meta {
@@ -28,4 +28,12 @@ body {
 	padding: 0;
 	font-size: inherit;
 	border-radius: 0;
+}
+
+@page {
+	size: 8.5in 11in;
+	margin: 1in;
+	@bottom-center {
+		content: 'Page ' counter(page) ' of ' counter(pages);
+	}
 }

@@ -7,7 +7,7 @@
     "build": "npm-run-all -l clean -s build:*",
     "build:cms": "esbuild src/admin/previews.js --bundle --loader:.js=jsx --outfile=_site/admin/previews.js",
     "build:eleventy": "eleventy",
-    "build:pdf": "weasyprint _site/index.html _site/report.pdf",
+    "build:pdf": "weasyprint --pdf-variant=pdf/ua-1 _site/index.html _site/report.pdf",
     "clean": "rimraf _site",
     "cms": "decap-server",
     "create-pdf": "run",

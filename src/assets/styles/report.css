@@ -65,20 +65,21 @@ h1 {
 }
 
 h2 {
-	break-before: page;
+	font-size: 1.75rem;
 }
 
 h3 {
+	font-size: 1.25rem;
 	margin-top: 3em;
 	color: #191970;
 }
 
 h4 {
-	font-size: 1.25rem;
+	font-size: 1.125rem;
 }
 
 h5 {
-	font-size: 1.125rem;
+	font-size: 1rem;
 }
 
 hr {
@@ -159,13 +160,13 @@ pre[class*='language-'] {
 }
 
 .issue header h4 {
-	margin-block: 0;
+	margin-bottom: 0;
+	margin-top: 0;
 	display: flex;
 	flex-direction: column;
 }
 
 .issue header .number {
-	display: block;
 	padding: 0.25em 0.5em;
 	font-size: 65%;
 	background-color: #191970;
@@ -173,11 +174,10 @@ pre[class*='language-'] {
 	border: none;
 	margin-bottom: 0.4em;
 	margin-right: auto;
-	width: auto;
 }
 
 .issue header a {
-	margin-block-end: 0.25rem;
+	margin-bottom: 0.25rem;
 }
 
 .issue-meta {
