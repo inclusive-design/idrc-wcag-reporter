@@ -94,7 +94,10 @@ layout: base
   {% for issue in issueList %}
     {% if issue.fileSlug !== page.fileSlug %}
     <article class="issue">
-      <h3 id="{{ issue.data.title  | slugify }}" class="issue-title"><span class="number">Issue {{ loop.index }}</span>{{ issue.data.title }}</h3>
+      <header class="issue-title">
+        <h3 id="{{ issue.data.title | slugify }}"><span class="number">Issue {{ loop.index }}</span>{{ issue.data.title }}</h3>
+        {% newIssueUrl issue.data.title, issue.rawInput, issue.data.sample, issuesUrl %}
+      </header>
       {{ issue.templateContent | safe }}
 
       <div class="issue-meta">
@@ -118,7 +121,7 @@ layout: base
           </div>
           {% endif %}
           <div>
-            <dt>Sample: </dt>
+            <dt>Pages: </dt>
             {% if issue.data.sample == "all" %}
             <dd>All pages</dd>
             {% else %}

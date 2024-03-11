@@ -36,6 +36,6 @@ technologies:
   - WAI-ARIA
   - SVG
 
-issues: https://github.com/inclusive-design/idrc-wcag-reporter/
+issuesUrl: https://gitlab.com/inclusive-design/idrc-wcag-reporter
 ---
 This website is partly accessible. Some severe issues were found and described in this report.

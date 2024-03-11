@@ -76,10 +76,10 @@ collections:
             widget: list
             default: [HTML, CSS, JavaScript, WAI-ARIA, SVG]
             hint: Enter technologies used to build the website in a comma-separated list.
-          - name: issues
+          - name: issuesUrl
             label: Issues link
             widget: string
-            hint: Enter the link to the website's issues page on GitHub, Gitlab or JIRA.
+            hint: Enter the link to the website's GitHub repository or Gitlab repository.
             required: false
   - label: Issues
     label_singular: Issue

@@ -1,5 +1,15 @@
-@media (width >= 30em) {
+@media (width < 48em) {
+	.issue header {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+}
+
+
+@media (width < 30em) {
 	.issue-meta div {
-		width: 45%;
+		width: 100%;
 	}
 }

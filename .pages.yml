@@ -67,10 +67,10 @@ content:
         type: string
         list: true
         description: Enter technologies used to build the website.
-      - name: issues
+      - name: issuesUrl
         label: Issues link
         type: string
-        description: Enter the link to the website's issues page on GitHub, Gitlab or JIRA.
+        description: Enter the link to the website's GitHub repository or Gitlab repository.
         required: false
   - label: Issues
     name: issue
