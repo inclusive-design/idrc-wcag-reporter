@@ -30,6 +30,8 @@ layout: base
   {{ content | safe }}
   <h3>Results per principle</h3>
   {% scTable issueList, targetLevel, targetWcagVersion %}
+  <h3>Detailed results</h3>
+  {% scSupport partiallySupported, unsupported %}
 </section>
 
 <section id="about-this-report">
@@ -86,16 +88,24 @@ layout: base
   <h2>Issues</h2>
   <ol>
   {% for issue in issueList %}
-    {% if issue.fileSlug !== page.fileSlug %}
     <li><a href="#{{ issue.data.title  | slugify }}">{{ issue.data.title }}</a> ({% for sc in issue.data.sc | sort %}{{ sc }}{% if not loop.last%}, {% endif %}{% endfor %})</li>
-    {% endif %}
   {% endfor %}
   </ol>
+  {% set principle = '' %}
   {% for issue in issueList %}
+    {% if principle !== successcriteria[issue.data.sc[0]].principle %}
+      {% set principle = successcriteria[issue.data.sc[0]].principle %}
+      {% set newPrinciple = true %}
+    {% else %}
+      {% set newPrinciple = false %}
+    {% endif %}
+    {% if newPrinciple %}
+    <h3 id="{{ principle | slug }}">{{ principle }}</h3>
+    {% endif %}
     {% if issue.fileSlug !== page.fileSlug %}
     <article class="issue">
       <header class="issue-title">
-        <h3 id="{{ issue.data.title | slugify }}"><span class="number">Issue {{ loop.index }}</span>{{ issue.data.title }}</h3>
+        <h4 id="{{ issue.data.title | slugify }}"><span class="number">Issue {{ loop.index }}</span>{{ issue.data.title }}</h4>
         {% newIssueUrl issue.data.title, issue.rawInput, issue.data.sample, issuesUrl %}
       </header>
       {{ issue.templateContent | safe }}

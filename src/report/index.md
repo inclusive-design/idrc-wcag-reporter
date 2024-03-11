@@ -42,6 +42,6 @@ partiallySupported:
   - 1.2.3
 unsupported:
   - 1.4.1
-issuesUrl: https://gitlab.com/inclusive-design/idrc-wcag-reporter
+issuesUrl: https://github.com/inclusive-design/idrc-wcag-reporter
 ---
 This website is partly accessible. Some severe issues were found and described in this report.

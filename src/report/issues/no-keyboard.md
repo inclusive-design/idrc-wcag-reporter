@@ -1,13 +1,13 @@
 ---
 sc:
-  - 2.1.1
+  - 1.1.1
 severity: High
 difficulty: High
 title: Main menu does not work with keyboard
 sample: Blog post
 ---
 
-#### Problem
+##### Problem
 
 The main menu does not work with just a keyboard. The links are marked up like this:
 
@@ -15,7 +15,7 @@ The main menu does not work with just a keyboard. The links are marked up like t
 <div class="link 202034rsfd oiarjgeoi" onclick="woo()">About us</div>
 ```
 
-#### Solution
+##### Solution
 
 Use `<a>` tags for the links, and use the `href` attribute for the location to link to, like this:
 

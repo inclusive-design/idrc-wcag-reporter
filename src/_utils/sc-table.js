@@ -46,8 +46,8 @@ export default async function scTable(
   <table class="sc-table">
   <thead>
     <tr>
-      <td>Principle</td>
-      <td>Results by principle</td>
+      <th>Principle</th>
+      <th>Results by principle</th>
     </tr>
   </thead>
   <tbody>

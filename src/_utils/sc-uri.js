@@ -9,7 +9,7 @@ export default async function scUri(sc, targetWcagVersion) {
 	try {
 		criteria = await successCriteria();
 	} catch (error) {
-		console.error(`Fetch failed in scUri.js. ${error}`);
+		console.error(`Fetch failed in sc-uri.js. ${error}`);
 	}
 
 	if (criteria[sc]) {

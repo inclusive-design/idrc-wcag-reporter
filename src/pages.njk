@@ -70,17 +70,6 @@ content:
         type: string
         list: true
         description: Enter technologies used to build the website.
-      - name: supported
-        label: Supported
-        type: select
-        list: true
-        required: false
-        options:
-          values:
-{%- for number, sc in successcriteria %}
-            - value: {{ number }}
-              label: "{{ number }}: {{ sc.name }}"
-{%- endfor %}
       - name: partiallySupported
         label: Partially Supported
         type: select
@@ -157,5 +146,5 @@ content:
           label: Body,
           name: body,
           type: rich-text,
-          default: "#### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n#### Potential Solutions\n\nDescribe some potential solutions.\n\n#### Read more\n\nInclude some links to relevant examples and/or articles.",
+          default: "##### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n##### Potential Solutions\n\nDescribe some potential solutions.\n\n##### Read more\n\nInclude some links to relevant examples and/or articles.",
         }

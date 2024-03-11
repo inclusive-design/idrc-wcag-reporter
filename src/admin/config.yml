@@ -76,16 +76,6 @@ collections:
             widget: list
             default: [HTML, CSS, JavaScript, WAI-ARIA, SVG]
             hint: Enter technologies used to build the website in a comma-separated list.
-          - name: supported
-            label: Supported
-            widget: relation
-            multiple: true
-            collection: report
-            file: scData
-            value_field: successCriteria.*.number
-            search_fields: [successCriteria.*.number, successCriteria.*.name]
-            display_fields: [successCriteria.*.number, successCriteria.*.name]
-            required: false
           - name: partiallySupported
             label: Partially Supported
             widget: relation
@@ -176,5 +166,5 @@ collections:
           label: Body,
           name: body,
           widget: markdown,
-          default: "#### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n#### Potential Solutions\n\nDescribe some potential solutions.\n\n#### Read more\n\nInclude some links to relevant examples and/or articles.",
+          default: "##### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n##### Potential Solutions\n\nDescribe some potential solutions.\n\n##### Read more\n\nInclude some links to relevant examples and/or articles.",
         }

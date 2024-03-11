@@ -1,6 +1,7 @@
 import {EleventyRenderPlugin} from '@11ty/eleventy';
 import syntaxHighlightPlugin from '@11ty/eleventy-plugin-syntaxhighlight';
 import newIssueUrl from './src/_utils/new-issue-url.js';
+import scSupport from './src/_utils/sc-support.js';
 import scTable from './src/_utils/sc-table.js';
 import scUri from './src/_utils/sc-uri.js';
 import sanitizeNumber from './src/_utils/sanitize-number.js';
@@ -9,6 +10,7 @@ export default function eleventy(eleventyConfig) {
 	eleventyConfig.addFilter('scUri', scUri);
 
 	eleventyConfig.addNunjucksAsyncShortcode('scTable', scTable);
+	eleventyConfig.addNunjucksAsyncShortcode('scSupport', scSupport);
 	eleventyConfig.addShortcode('newIssueUrl', newIssueUrl);
 	eleventyConfig.addLayoutAlias('report', 'report.njk');
 

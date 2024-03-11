@@ -5,7 +5,7 @@ export default function newIssueUrl(title, body, sample, issuesUrl) {
 
 	let issueUrl = '';
 
-	body = sample === 'all' ? `${body}\n#### Pages\n\n- All pages` : `${body}\n#### Pages\n\n- ${sample}`;
+	body = sample === 'all' ? `${body}\n##### Pages\n\n- All pages` : `${body}\n##### Pages\n\n- ${sample}`;
 
 	if (issuesUrl.includes('github')) {
 		issueUrl = newGithubIssueUrl({
