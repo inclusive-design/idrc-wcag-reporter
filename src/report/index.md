@@ -20,9 +20,9 @@ outOfScope:
     url: https://example.com/feed
 tools:
   - name: Mozilla Firefox
-    version: 123.0
+    version: 123
   - name: Google Chrome
-    version: 122.0
+    version: 122
   - name: Apple Safari
     version: 17.4
   - name: Apple Safari (iOS)
@@ -35,7 +35,13 @@ technologies:
   - JavaScript
   - WAI-ARIA
   - SVG
-
+supported:
+  - 1.1.1
+partiallySupported:
+  - 1.2.1
+  - 1.2.3
+unsupported:
+  - 1.4.1
 issuesUrl: https://gitlab.com/inclusive-design/idrc-wcag-reporter
 ---
 This website is partly accessible. Some severe issues were found and described in this report.

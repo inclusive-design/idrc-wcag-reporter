@@ -1,0 +1,161 @@
+---
+permalink: ../.pages.yml
+---
+content:
+  - label: About
+    name: about
+    type: file
+    path: src/_includes/about.md
+    fields:
+    - name: body
+      label: About this report
+      type: rich-text
+  - label: Report Data
+    name: reportData
+    type: file
+    path: src/report/index.md
+    fields:
+      - name: "evaluators"
+        label: "Evaluators"
+        type: "string"
+        list: true
+      - name: "commissioner"
+        label: "Commissioner"
+        type: "string"
+      - name: targetLevel
+        label: Target Level
+        type: select
+        options:
+          values: [A, AA, AAA]
+      - name: targetWcagVersion
+        label: Target WCAG Version
+        type: select
+        options:
+          values: ["2.0", "2.1", "2.2"]
+      - name: date
+        label: Date
+        type: date
+      - name: specialRequirements
+        label: Special Requirements
+        type: text
+      - name: body
+        label: Executive summary
+        type: rich-text
+      - name: scope
+        label: In scope
+        type: object
+        list: true
+        fields:
+        - { name: "title", label: "Title", type: "string" }
+        - { name: "url", label: "URL", type: "string" }
+        - { name: "description", label: "Description", type: "text", required: false }
+      - name: outOfScope
+        label: Out of scope
+        type: object
+        list: true
+        fields:
+        - { name: "title", label: "Title", type: "string" }
+        - { name: "url", label: "URL", type: "string" }
+        - { name: "description", label: "Description", type: "text", required: false }
+      - name: tools
+        label: Tools used
+        type: object
+        list: true
+        fields:
+        - { name: "name", label: "Name", type: "string" }
+        - { name: "version", label: "Version", type: "string", required: false }
+        description: Enter browsers and assistive technologies used in auditing the website.
+      - name: technologies
+        label: Technologies used
+        type: string
+        list: true
+        description: Enter technologies used to build the website.
+      - name: supported
+        label: Supported
+        type: select
+        list: true
+        required: false
+        options:
+          values:
+{%- for number, sc in successcriteria %}
+            - value: {{ number }}
+              label: "{{ number }}: {{ sc.name }}"
+{%- endfor %}
+      - name: partiallySupported
+        label: Partially Supported
+        type: select
+        list: true
+        required: false
+        options:
+          values:
+{%- for number, sc in successcriteria %}
+            - value: {{ number }}
+              label: "{{ number }}: {{ sc.name }}"
+{%- endfor %}
+      - name: unsupported
+        label: Unsupported
+        type: select
+        list: true
+        required: false
+        options:
+          values:
+{%- for number, sc in successcriteria %}
+            - value: {{ number }}
+              label: "{{ number }}: {{ sc.name }}"
+{%- endfor %}
+      - name: issuesUrl
+        label: Issues link
+        type: string
+        description: Enter the link to the website's GitHub repository or Gitlab repository.
+        required: false
+  - label: Issues
+    name: issue
+    path: src/report/issues
+    type: collection
+    fields:
+      - { label: Title, name: title, type: string }
+      - label: Success Criteria
+        name: sc
+        type: select
+        list: true
+        options:
+          values:
+{%- for number, sc in successcriteria %}
+            - value: {{ number }}
+              label: "{{ number }}: {{ sc.name }}"
+{%- endfor %}
+      - {
+          label: Severity,
+          name: severity,
+          type: select,
+          options:
+            { values: ["Unknown", "Low", "Medium", "High"] },
+          required: false,
+        }
+      - {
+          label: Difficulty,
+          name: difficulty,
+          type: select,
+          options: { values: ["Unknown", "Low", "Medium", "High"] },
+          required: false,
+        }
+      - { label: Sample Pages, name: sample, type: string, default: "all" }
+      - {
+          label: Screenshots,
+          name: screenshots,
+          type: object,
+          list: true,
+          required: false,
+          fields:
+            [
+              { label: "Screenshot", name: "src", type: "image" },
+              { label: "Alt Text", name: "alt", type: "string" },
+              { label: "Caption", name: "caption", type: "text" },
+            ],
+        }
+      - {
+          label: Body,
+          name: body,
+          type: rich-text,
+          default: "#### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n#### Potential Solutions\n\nDescribe some potential solutions.\n\n#### Read more\n\nInclude some links to relevant examples and/or articles.",
+        }

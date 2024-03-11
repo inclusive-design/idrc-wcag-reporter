@@ -1,0 +1,13 @@
+---
+permalink: ../src/_data/scData.json
+---
+{
+  "successCriteria": [
+{%- for number, sc in successcriteria %}
+    {
+        "number": "{{ number }}",
+        "name": "{{ sc.name }}"
+    }{% if not loop.last %},{% endif %}
+{%- endfor %}
+  ]
+}
