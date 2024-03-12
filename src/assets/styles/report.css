@@ -262,6 +262,10 @@ pre[class*='language-'] {
 	text-decoration: none;
 }
 
+.wcag-link:visited {
+	color: #fff;
+}
+
 .external {
 	clip: rect(0 0 0 0);
 	height: 1px;

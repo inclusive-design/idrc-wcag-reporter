@@ -157,9 +157,9 @@ collections:
           required: false,
           fields:
             [
-              { label: "Screenshot", name: "src", widget: "image" },
-              { label: "Alt Text", name: "alt", widget: "string" },
-              { label: "Caption", name: "caption", widget: "text" },
+              { label: "Screenshot", name: "src", widget: "image", required: false },
+              { label: "Alt Text", name: "alt", widget: "string", required: false },
+              { label: "Caption", name: "caption", widget: "text", required: false },
             ],
         }
       - {
