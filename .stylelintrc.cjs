@@ -1,11 +1,11 @@
 module.exports = {
-    extends: "stylelint-config-xo",
-    plugins: ["stylelint-use-logical-spec"],
+    extends: ["stylelint-config-xo"],
+    plugins: ["stylelint-order"],
     ignoreFiles: ["_site/**/*.css"],
     rules: {
         "custom-property-pattern": null,
         "import-notation": "string",
         "selector-class-pattern": null,
-        "liberty/use-logical-spec": null,
+        "order/properties-alphabetical-order": true
     },
 };

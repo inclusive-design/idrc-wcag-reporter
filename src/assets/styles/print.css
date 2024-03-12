@@ -1,6 +1,6 @@
 @page {
-	size: 8.5in 11in;
 	margin: 1in;
+	size: 8.5in 11in;
 	@bottom-center {
 		content: 'Page ' counter(page) ' of ' counter(pages);
 	}
@@ -11,8 +11,8 @@ body {
 }
 
 .issue {
-	break-inside: avoid;
 	border: none;
+	break-inside: avoid;
 	padding: 0;
 }
 
@@ -31,10 +31,10 @@ body {
 
 a.wcag-link,
 a.wcag-link:visited {
-	text-decoration: underline;
 	background-color: transparent;
-	color: #191970;
-	padding: 0;
-	font-size: inherit;
 	border-radius: 0;
+	color: #191970;
+	font-size: inherit;
+	padding: 0;
+	text-decoration: underline;
 }
