@@ -43,7 +43,7 @@
     "a11y-syntax-highlighting": "^0.2.0",
     "decap-cms": "^3.1.2",
     "eleventy-plugin-markdown-shortcode": "^1.1.0",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "new-github-issue-url": "^1.0.0"
   },
   "devDependencies": {
