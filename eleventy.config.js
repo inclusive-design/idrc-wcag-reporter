@@ -17,6 +17,11 @@ export default function eleventy(eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(syntaxHighlightPlugin);
 
+	// eslint-disable-next-line prefer-arrow-callback
+	eleventyConfig.addAsyncFilter('formatDate', function (value) {
+		return new Date(value).toLocaleString('en-CA', {year: 'numeric', month: 'long', day: 'numeric'});
+	});
+
 	eleventyConfig.addCollection('issues', collectionApi =>
 		collectionApi
 			.getFilteredByGlob('src/report/issues/*.md')
