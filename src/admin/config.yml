@@ -2,6 +2,7 @@ backend:
   name: github
   branch: main
   repo: inclusive-design/idrc-wcag-reporter
+  base_url: https://sveltia-cms-auth.idrc-ops.workers.dev
 media_folder: src/assets/uploads
 public_folder: /assets/uploads
 editor:
