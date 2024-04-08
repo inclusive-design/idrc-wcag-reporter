@@ -63,15 +63,6 @@ export default function eleventy(eleventyConfig) {
 
 	eleventyConfig.addPassthroughCopy({
 		'node_modules/a11y-syntax-highlighting/dist/prism/a11y-dark.min.css': 'assets/styles/a11y-dark.min.css',
-		'node_modules/decap-cms/dist/decap-cms.js': 'lib/cms/decap-cms.js',
-		'node_modules/decap-cms/dist/decap-cms.js.map':
-            'lib/cms/decap-cms.js.map',
-		'node_modules/prop-types/prop-types.min.js':
-            'lib/cms/prop-types.min.js',
-		'node_modules/react/umd/react.development.js':
-            'lib/cms/react.development.js',
-		'node_modules/react/umd/react.production.min.js':
-            'lib/cms/react.production.min.js',
 	});
 
 	return {

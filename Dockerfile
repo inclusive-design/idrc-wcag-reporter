@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git python3 py3-pip pango gcc musl-dev py3-wheel python3-dev libffi-dev zlib-dev jpeg-dev
+
+RUN pip install weasyprint
 
 RUN npm install
 
