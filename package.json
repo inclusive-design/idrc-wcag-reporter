@@ -5,11 +5,9 @@
   "main": "eleventy.config.js",
   "scripts": {
     "build": "npm-run-all -l clean -s build:*",
-    "build:cms": "esbuild src/admin/previews.js --bundle --loader:.js=jsx --outfile=_site/admin/previews.js",
     "build:eleventy": "eleventy",
     "build:pdf": "weasyprint --pdf-variant=pdf/ua-1 _site/index.html _site/report.pdf",
     "clean": "rimraf _site",
-    "cms": "decap-server",
     "create-pdf": "run",
     "debug": "DEBUG=Eleventy* eleventy",
     "dev": "cross-env NODE_ENV=development eleventy --serve",
@@ -19,10 +17,7 @@
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint:yml": "xo \"**/*.yml\"",
     "open-pdf": "open-cli _site/report.pdf",
-    "serve": "npx serve _site",
-    "start": "npm-run-all -l clean -p start:*",
-    "start:cms": "esbuild src/admin/previews.js --bundle --loader:.js=jsx --outfile=_site/admin/previews.js --watch",
-    "start:eleventy": "run-p dev cms",
+    "start": "npm-run-all -l clean dev",
     "prepare": "husky install"
   },
   "repository": {
@@ -41,9 +36,7 @@
     "@11ty/eleventy-fetch": "^4.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "a11y-syntax-highlighting": "^0.2.0",
-    "decap-cms": "^3.1.2",
     "eleventy-plugin-markdown-shortcode": "^1.1.0",
-    "esbuild": "^0.20.1",
     "new-github-issue-url": "^1.0.0"
   },
   "devDependencies": {
@@ -51,7 +44,6 @@
     "@commitlint/config-conventional": "^19.0.3",
     "cross-env": "^7.0.3",
     "debug": "^4.3.4",
-    "decap-server": "^3.0.2",
     "eslint-config-xo-react": "^0.27.0",
     "eslint-plugin-jsdoc": "^48.2.1",
     "eslint-plugin-markdown": "^4.0.1",
