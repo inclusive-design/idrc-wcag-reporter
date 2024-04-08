@@ -1,12 +1,12 @@
 ---
 sc:
   - 1.1.1
+  - 2.1.1
 severity: High
 difficulty: High
 title: Main menu does not work with keyboard
 sample: Blog post
 ---
-
 ##### Problem
 
 The main menu does not work with just a keyboard. The links are marked up like this:
