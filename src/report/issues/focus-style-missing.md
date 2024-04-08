@@ -1,13 +1,11 @@
 ---
 sc:
   - 2.4.7
-  - 2.4.6
 severity: High
 difficulty: Low
 title: Focus style missing
 sample: all
 ---
-
 ##### Problem
 
 Focus styles have been removed through the website's stylesheets:
