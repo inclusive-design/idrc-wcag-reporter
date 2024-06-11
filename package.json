@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/inclusive-design/idrc-wcag-reporter#readme",
   "dependencies": {
-    "@11ty/eleventy": "3.0.0-alpha.11",
+    "@11ty/eleventy": "3.0.0-alpha.12",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "a11y-syntax-highlighting": "^0.2.0",
