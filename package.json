@@ -1,6 +1,6 @@
 {
   "name": "idrc-wcag-reporter",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Eleventy project to build accessibility conformance reports in HTML from issues written in Markdown.",
   "main": "eleventy.config.js",
   "scripts": {

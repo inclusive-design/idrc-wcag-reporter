@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.0.0-alpha.2](https://github.com/inclusive-design/idrc-wcag-reporter/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2024-07-01)
+
+
+### Features
+
+* configure CMS authentication ([#34](https://github.com/inclusive-design/idrc-wcag-reporter/issues/34)) ([574921f](https://github.com/inclusive-design/idrc-wcag-reporter/commit/574921fea98c5e1bf94dbea511a030a08e63303f))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @11ty/eleventy to v3.0.0-alpha.11 ([#50](https://github.com/inclusive-design/idrc-wcag-reporter/issues/50)) ([222c012](https://github.com/inclusive-design/idrc-wcag-reporter/commit/222c0124b22208ee1a53a6de85ee28559736c190))
+* **deps:** update dependency @11ty/eleventy to v3.0.0-alpha.12 ([#58](https://github.com/inclusive-design/idrc-wcag-reporter/issues/58)) ([b3af9e3](https://github.com/inclusive-design/idrc-wcag-reporter/commit/b3af9e3ad4f53d341fd23dd1277191a59454901a))
+* **deps:** update dependency @11ty/eleventy to v3.0.0-alpha.13 ([#59](https://github.com/inclusive-design/idrc-wcag-reporter/issues/59)) ([b99a555](https://github.com/inclusive-design/idrc-wcag-reporter/commit/b99a5552f088e372ecf78fd3432ecdcc4771a40a))
+* **deps:** update dependency @11ty/eleventy to v3.0.0-alpha.14 ([#71](https://github.com/inclusive-design/idrc-wcag-reporter/issues/71)) ([9683ee3](https://github.com/inclusive-design/idrc-wcag-reporter/commit/9683ee326555cd067fc0aa0d9e142ee07400e16c))
+
+
+### Miscellaneous Chores
+
+* adjust version ([4c20cb1](https://github.com/inclusive-design/idrc-wcag-reporter/commit/4c20cb1304e7ae74b3897cf813e7579750fb4878))
+
 ## [1.0.0-alpha.1](https://github.com/inclusive-design/idrc-wcag-reporter/compare/v0.0.1...v1.0.0-alpha.1) (2024-04-08)
 
 
