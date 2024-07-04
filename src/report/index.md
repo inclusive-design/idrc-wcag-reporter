@@ -4,9 +4,9 @@ evaluators:
   - Lisa Liskovoi
   - Ned Zimmerman
 commissioner: Example Client
-targetLevel: AAA
+targetLevel: AA
 targetWcagVersion: "2.2"
-date: 2024-03-07T18:07:28.281Z
+date: 2024-03-07T14:07
 specialRequirements: Please also list accessibility problems that are not conformance failures.
 scope:
   - title: Homepage
@@ -20,28 +20,32 @@ outOfScope:
     url: https://example.com/feed
 tools:
   - name: Mozilla Firefox
-    version: 123
+    version: "123"
   - name: Google Chrome
-    version: 122
+    version: "122"
   - name: Apple Safari
-    version: 17.4
+    version: "17.4"
   - name: Apple Safari (iOS)
-    version: 17.4
+    version: "17.4"
   - name: JAWS
+    version: ""
   - name: VoiceOver
+    version: ""
 technologies:
   - HTML
   - CSS
   - JavaScript
   - WAI-ARIA
   - SVG
-supported:
-  - 1.1.1
 partiallySupported:
   - 1.2.1
   - 1.2.3
 unsupported:
   - 1.4.1
+notApplicable:
+  - 1.2.3
 issuesUrl: https://github.com/inclusive-design/idrc-wcag-reporter
+supported:
+  - 1.1.1
 ---
 This website is partly accessible. Some severe issues were found and described in this report.

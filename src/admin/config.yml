@@ -53,24 +53,34 @@ collections:
             label_singular: in scope item
             widget: list
             fields:
-              - {name: "title", label: "Title", widget: "string"}
-              - {name: "url", label: "URL", widget: "string"}
-              - {name: "description", label: "Description", widget: "text", required: false}
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - {
+                  name: "description",
+                  label: "Description",
+                  widget: "text",
+                  required: false,
+                }
           - name: outOfScope
             label: Out of scope
             label_singular: out of scope item
             widget: list
             fields:
-              - {name: "title", label: "Title", widget: "string"}
-              - {name: "url", label: "URL", widget: "string"}
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
           - name: tools
             label: Tools used
             label_singular: tool
             widget: list
-            summary: '{{fields.name}} {{fields.version}}'
+            summary: "{{fields.name}} {{fields.version}}"
             fields:
-              - {name: "name", label: "Tool", widget: "string"}
-              - {name: "version", label: "Version", widget: "string", required: false}
+              - { name: "name", label: "Tool", widget: "string" }
+              - {
+                  name: "version",
+                  label: "Version",
+                  widget: "string",
+                  required: false,
+                }
             hint: Enter browsers and assistive technologies used in auditing the website.
           - name: technologies
             label: Technologies used
@@ -97,6 +107,16 @@ collections:
             search_fields: [successCriteria.*.number, successCriteria.*.name]
             display_fields: [successCriteria.*.number, successCriteria.*.name]
             required: false
+          - name: notApplicable
+            label: Not applicable
+            widget: relation
+            multiple: true
+            collection: report
+            file: scData
+            value_field: successCriteria.*.number
+            search_fields: [successCriteria.*.number, successCriteria.*.name]
+            display_fields: [successCriteria.*.number, successCriteria.*.name]
+            required: false
           - name: issuesUrl
             label: Issues link
             widget: string
@@ -110,7 +130,7 @@ collections:
         fields:
           - name: successCriteria
             label: Success Criteria
-            summary: '{{fields.number}} {{fields.name}}'
+            summary: "{{fields.number}} {{fields.name}}"
             widget: list
             fields:
               - name: number
@@ -127,7 +147,7 @@ collections:
     extension: md
     create: true
     fields:
-      - {label: Title, name: title, widget: string}
+      - { label: Title, name: title, widget: string }
       - label: Success Criteria
         name: sc
         widget: relation
@@ -137,8 +157,44 @@ collections:
         value_field: successCriteria.*.number
         search_fields: [successCriteria.*.number, successCriteria.*.name]
         display_fields: [successCriteria.*.number, successCriteria.*.name]
-      - {label: Severity, name: severity, widget: select, options: ["Unknown", "Low", "Medium", "High"], required: false}
-      - {label: Difficulty, name: difficulty, widget: select, options: ["Unknown", "Low", "Medium", "High"], required: false}
-      - {label: Sample Pages, name: sample, widget: string, default: "all"}
-      - {label: Screenshots, name: screenshots, widget: object, required: false, fields: [{label: "Screenshot", name: "src", widget: "image", required: false}, {label: "Alt Text", name: "alt", widget: "string", required: false}, {label: "Caption", name: "caption", widget: "text", required: false}]}
-      - {label: Body, name: body, widget: markdown, default: "##### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n##### Potential Solutions\n\nDescribe some potential solutions.\n\n##### Read more\n\nInclude some links to relevant examples and/or articles."}
+      - {
+          label: Severity,
+          name: severity,
+          widget: select,
+          options: ["Unknown", "Low", "Medium", "High"],
+          required: false,
+        }
+      - { label: Sample Pages, name: sample, widget: string, default: "all" }
+      - {
+          label: Screenshots,
+          name: screenshots,
+          widget: object,
+          required: false,
+          fields:
+            [
+              {
+                label: "Screenshot",
+                name: "src",
+                widget: "image",
+                required: false,
+              },
+              {
+                label: "Alt Text",
+                name: "alt",
+                widget: "string",
+                required: false,
+              },
+              {
+                label: "Caption",
+                name: "caption",
+                widget: "text",
+                required: false,
+              },
+            ],
+        }
+      - {
+          label: Body,
+          name: body,
+          widget: markdown,
+          default: "##### Problem\n\nDescribe the problem. Include code samples if necessary.\n\n##### Potential Solutions\n\nDescribe some potential solutions.\n\n##### Read more\n\nInclude some links to relevant examples and/or articles.",
+        }

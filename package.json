@@ -35,6 +35,7 @@
     "@11ty/eleventy": "3.0.0-alpha.14",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@zachleat/table-saw": "^1.0.6",
     "a11y-syntax-highlighting": "^0.2.0",
     "new-github-issue-url": "^1.0.0"
   },

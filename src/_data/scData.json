@@ -2,351 +2,351 @@
   "successCriteria": [
     {
         "number": "1.1.1",
-        "name": "Non-text Content"
+        "name": "Non-text Content (Level A)"
     },
     {
         "number": "1.2.1",
-        "name": "Audio-only and Video-only (Prerecorded)"
+        "name": "Audio-only and Video-only (Prerecorded) (Level A)"
     },
     {
         "number": "1.2.2",
-        "name": "Captions (Prerecorded)"
+        "name": "Captions (Prerecorded) (Level A)"
     },
     {
         "number": "1.2.3",
-        "name": "Audio Description or Media Alternative (Prerecorded)"
+        "name": "Audio Description or Media Alternative (Prerecorded) (Level A)"
     },
     {
         "number": "1.2.4",
-        "name": "Captions (Live)"
+        "name": "Captions (Live) (Level AA)"
     },
     {
         "number": "1.2.5",
-        "name": "Audio Description (Prerecorded)"
+        "name": "Audio Description (Prerecorded) (Level AA)"
     },
     {
         "number": "1.2.6",
-        "name": "Sign Language (Prerecorded)"
+        "name": "Sign Language (Prerecorded) (Level AAA)"
     },
     {
         "number": "1.2.7",
-        "name": "Extended Audio Description (Prerecorded)"
+        "name": "Extended Audio Description (Prerecorded) (Level AAA)"
     },
     {
         "number": "1.2.8",
-        "name": "Media Alternative (Prerecorded)"
+        "name": "Media Alternative (Prerecorded) (Level AAA)"
     },
     {
         "number": "1.2.9",
-        "name": "Audio-only (Live)"
+        "name": "Audio-only (Live) (Level AAA)"
     },
     {
         "number": "1.3.1",
-        "name": "Info and Relationships"
+        "name": "Info and Relationships (Level A)"
     },
     {
         "number": "1.3.2",
-        "name": "Meaningful Sequence"
+        "name": "Meaningful Sequence (Level A)"
     },
     {
         "number": "1.3.3",
-        "name": "Sensory Characteristics"
+        "name": "Sensory Characteristics (Level A)"
     },
     {
         "number": "1.3.4",
-        "name": "Orientation"
+        "name": "Orientation (Level AA)"
     },
     {
         "number": "1.3.5",
-        "name": "Identify Input Purpose"
+        "name": "Identify Input Purpose (Level AA)"
     },
     {
         "number": "1.3.6",
-        "name": "Identify Purpose"
+        "name": "Identify Purpose (Level AAA)"
     },
     {
         "number": "1.4.1",
-        "name": "Use of Color"
+        "name": "Use of Color (Level A)"
     },
     {
         "number": "1.4.2",
-        "name": "Audio Control"
+        "name": "Audio Control (Level A)"
     },
     {
         "number": "1.4.3",
-        "name": "Contrast (Minimum)"
+        "name": "Contrast (Minimum) (Level AA)"
     },
     {
         "number": "1.4.4",
-        "name": "Resize Text"
+        "name": "Resize Text (Level AA)"
     },
     {
         "number": "1.4.5",
-        "name": "Images of Text"
+        "name": "Images of Text (Level AA)"
     },
     {
         "number": "1.4.6",
-        "name": "Contrast (Enhanced)"
+        "name": "Contrast (Enhanced) (Level AAA)"
     },
     {
         "number": "1.4.7",
-        "name": "Low or No Background Audio"
+        "name": "Low or No Background Audio (Level AAA)"
     },
     {
         "number": "1.4.8",
-        "name": "Visual Presentation"
+        "name": "Visual Presentation (Level AAA)"
     },
     {
         "number": "1.4.9",
-        "name": "Images of Text (No Exception)"
+        "name": "Images of Text (No Exception) (Level AAA)"
     },
     {
         "number": "1.4.10",
-        "name": "Reflow"
+        "name": "Reflow (Level AA)"
     },
     {
         "number": "1.4.11",
-        "name": "Non-text Contrast"
+        "name": "Non-text Contrast (Level AA)"
     },
     {
         "number": "1.4.12",
-        "name": "Text Spacing"
+        "name": "Text Spacing (Level AA)"
     },
     {
         "number": "1.4.13",
-        "name": "Content on Hover or Focus"
+        "name": "Content on Hover or Focus (Level AA)"
     },
     {
         "number": "2.1.1",
-        "name": "Keyboard"
+        "name": "Keyboard (Level A)"
     },
     {
         "number": "2.1.2",
-        "name": "No Keyboard Trap"
+        "name": "No Keyboard Trap (Level A)"
     },
     {
         "number": "2.1.3",
-        "name": "Keyboard (No Exception)"
+        "name": "Keyboard (No Exception) (Level AAA)"
     },
     {
         "number": "2.1.4",
-        "name": "Character Key Shortcuts"
+        "name": "Character Key Shortcuts (Level A)"
     },
     {
         "number": "2.2.1",
-        "name": "Timing Adjustable"
+        "name": "Timing Adjustable (Level A)"
     },
     {
         "number": "2.2.2",
-        "name": "Pause, Stop, Hide"
+        "name": "Pause, Stop, Hide (Level A)"
     },
     {
         "number": "2.2.3",
-        "name": "No Timing"
+        "name": "No Timing (Level AAA)"
     },
     {
         "number": "2.2.4",
-        "name": "Interruptions"
+        "name": "Interruptions (Level AAA)"
     },
     {
         "number": "2.2.5",
-        "name": "Re-authenticating"
+        "name": "Re-authenticating (Level AAA)"
     },
     {
         "number": "2.2.6",
-        "name": "Timeouts"
+        "name": "Timeouts (Level AAA)"
     },
     {
         "number": "2.3.1",
-        "name": "Three Flashes or Below Threshold"
+        "name": "Three Flashes or Below Threshold (Level A)"
     },
     {
         "number": "2.3.2",
-        "name": "Three Flashes"
+        "name": "Three Flashes (Level AAA)"
     },
     {
         "number": "2.3.3",
-        "name": "Animation from Interactions"
+        "name": "Animation from Interactions (Level AAA)"
     },
     {
         "number": "2.4.1",
-        "name": "Bypass Blocks"
+        "name": "Bypass Blocks (Level A)"
     },
     {
         "number": "2.4.2",
-        "name": "Page Titled"
+        "name": "Page Titled (Level A)"
     },
     {
         "number": "2.4.3",
-        "name": "Focus Order"
+        "name": "Focus Order (Level A)"
     },
     {
         "number": "2.4.4",
-        "name": "Link Purpose (In Context)"
+        "name": "Link Purpose (In Context) (Level A)"
     },
     {
         "number": "2.4.5",
-        "name": "Multiple Ways"
+        "name": "Multiple Ways (Level AA)"
     },
     {
         "number": "2.4.6",
-        "name": "Headings and Labels"
+        "name": "Headings and Labels (Level AA)"
     },
     {
         "number": "2.4.7",
-        "name": "Focus Visible"
+        "name": "Focus Visible (Level AA)"
     },
     {
         "number": "2.4.8",
-        "name": "Location"
+        "name": "Location (Level AAA)"
     },
     {
         "number": "2.4.9",
-        "name": "Link Purpose (Link Only)"
+        "name": "Link Purpose (Link Only) (Level AAA)"
     },
     {
         "number": "2.4.10",
-        "name": "Section Headings"
+        "name": "Section Headings (Level AAA)"
     },
     {
         "number": "2.4.11",
-        "name": "Focus Not Obscured (Minimum)"
+        "name": "Focus Not Obscured (Minimum) (Level AA)"
     },
     {
         "number": "2.4.12",
-        "name": "Focus Not Obscured (Enhanced)"
+        "name": "Focus Not Obscured (Enhanced) (Level AAA)"
     },
     {
         "number": "2.4.13",
-        "name": "Focus Appearance"
+        "name": "Focus Appearance (Level AAA)"
     },
     {
         "number": "2.5.1",
-        "name": "Pointer Gestures"
+        "name": "Pointer Gestures (Level A)"
     },
     {
         "number": "2.5.2",
-        "name": "Pointer Cancellation"
+        "name": "Pointer Cancellation (Level A)"
     },
     {
         "number": "2.5.3",
-        "name": "Label in Name"
+        "name": "Label in Name (Level A)"
     },
     {
         "number": "2.5.4",
-        "name": "Motion Actuation"
+        "name": "Motion Actuation (Level A)"
     },
     {
         "number": "2.5.5",
-        "name": "Target Size (Enhanced)"
+        "name": "Target Size (Enhanced) (Level AAA)"
     },
     {
         "number": "2.5.6",
-        "name": "Concurrent Input Mechanisms"
+        "name": "Concurrent Input Mechanisms (Level AAA)"
     },
     {
         "number": "2.5.7",
-        "name": "Dragging Movements"
+        "name": "Dragging Movements (Level AA)"
     },
     {
         "number": "2.5.8",
-        "name": "Target Size (Minimum)"
+        "name": "Target Size (Minimum) (Level AA)"
     },
     {
         "number": "3.1.1",
-        "name": "Language of Page"
+        "name": "Language of Page (Level A)"
     },
     {
         "number": "3.1.2",
-        "name": "Language of Parts"
+        "name": "Language of Parts (Level AA)"
     },
     {
         "number": "3.1.3",
-        "name": "Unusual Words"
+        "name": "Unusual Words (Level AAA)"
     },
     {
         "number": "3.1.4",
-        "name": "Abbreviations"
+        "name": "Abbreviations (Level AAA)"
     },
     {
         "number": "3.1.5",
-        "name": "Reading Level"
+        "name": "Reading Level (Level AAA)"
     },
     {
         "number": "3.1.6",
-        "name": "Pronunciation"
+        "name": "Pronunciation (Level AAA)"
     },
     {
         "number": "3.2.1",
-        "name": "On Focus"
+        "name": "On Focus (Level A)"
     },
     {
         "number": "3.2.2",
-        "name": "On Input"
+        "name": "On Input (Level A)"
     },
     {
         "number": "3.2.3",
-        "name": "Consistent Navigation"
+        "name": "Consistent Navigation (Level AA)"
     },
     {
         "number": "3.2.4",
-        "name": "Consistent Identification"
+        "name": "Consistent Identification (Level AA)"
     },
     {
         "number": "3.2.5",
-        "name": "Change on Request"
+        "name": "Change on Request (Level AAA)"
     },
     {
         "number": "3.2.6",
-        "name": "Consistent Help"
+        "name": "Consistent Help (Level A)"
     },
     {
         "number": "3.3.1",
-        "name": "Error Identification"
+        "name": "Error Identification (Level A)"
     },
     {
         "number": "3.3.2",
-        "name": "Labels or Instructions"
+        "name": "Labels or Instructions (Level A)"
     },
     {
         "number": "3.3.3",
-        "name": "Error Suggestion"
+        "name": "Error Suggestion (Level AA)"
     },
     {
         "number": "3.3.4",
-        "name": "Error Prevention (Legal, Financial, Data)"
+        "name": "Error Prevention (Legal, Financial, Data) (Level AA)"
     },
     {
         "number": "3.3.5",
-        "name": "Help"
+        "name": "Help (Level AAA)"
     },
     {
         "number": "3.3.6",
-        "name": "Error Prevention (All)"
+        "name": "Error Prevention (All) (Level AAA)"
     },
     {
         "number": "3.3.7",
-        "name": "Redundant Entry"
+        "name": "Redundant Entry (Level A)"
     },
     {
         "number": "3.3.8",
-        "name": "Accessible Authentication (Minimum)"
+        "name": "Accessible Authentication (Minimum) (Level AA)"
     },
     {
         "number": "3.3.9",
-        "name": "Accessible Authentication (Enhanced)"
+        "name": "Accessible Authentication (Enhanced) (Level AAA)"
     },
     {
         "number": "4.1.1",
-        "name": "Parsing (Obsolete and removed)"
+        "name": "Parsing (Obsolete and removed) (Level )"
     },
     {
         "number": "4.1.2",
-        "name": "Name, Role, Value"
+        "name": "Name, Role, Value (Level A)"
     },
     {
         "number": "4.1.3",
-        "name": "Status Messages"
+        "name": "Status Messages (Level AA)"
     }
   ]
 }
