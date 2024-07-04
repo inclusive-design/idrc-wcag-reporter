@@ -17,17 +17,17 @@ export default function eleventy(eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(syntaxHighlightPlugin);
 
-	// eslint-disable-next-line prefer-arrow-callback
-	eleventyConfig.addAsyncFilter('formatDate', function (value) {
-		return new Date(value).toLocaleString('en-CA', {year: 'numeric', month: 'long', day: 'numeric'});
-	});
+	eleventyConfig.addAsyncFilter('formatDate', value => new Date(value).toLocaleString('en-CA', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	}));
 
 	eleventyConfig.addCollection('issues', collectionApi =>
 		collectionApi
 			.getFilteredByGlob('src/report/issues/*.md')
 			.filter(
-				item =>
-					!(item.data.sc === undefined) && (item.data.sc.length > 0),
+				item => !(item.data.sc === undefined) && item.data.sc.length > 0,
 			)
 			.sort((a, b) => {
 				const sortCriterionA = a.data.sc.sort()[0];
@@ -50,7 +50,9 @@ export default function eleventy(eleventyConfig) {
 	eleventyConfig.addCollection('tips', collectionApi =>
 		collectionApi
 			.getFilteredByGlob('src/report/issues/*.md')
-			.filter(item => item.data.sc === undefined || item.data.sc.length === 0),
+			.filter(
+				item => item.data.sc === undefined || item.data.sc.length === 0,
+			),
 	);
 
 	eleventyConfig.addPassthroughCopy({
@@ -62,7 +64,10 @@ export default function eleventy(eleventyConfig) {
 	});
 
 	eleventyConfig.addPassthroughCopy({
-		'node_modules/a11y-syntax-highlighting/dist/prism/a11y-dark.min.css': 'assets/styles/a11y-dark.min.css',
+		'node_modules/a11y-syntax-highlighting/dist/prism/a11y-dark.min.css':
+      'assets/styles/a11y-dark.min.css',
+		'node_modules/@zachleat/table-saw/table-saw.js':
+      'assets/scripts/table-saw.js',
 	});
 
 	return {

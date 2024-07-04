@@ -6,7 +6,7 @@ permalink: ../src/_data/scData.json
 {%- for number, sc in successcriteria %}
     {
         "number": "{{ number }}",
-        "name": "{{ sc.name }}"
+        "name": "{{ sc.name }} (Level {{ sc.level }})"
     }{% if not loop.last %},{% endif %}
 {%- endfor %}
   ]

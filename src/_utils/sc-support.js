@@ -1,9 +1,15 @@
+import slugify from '@sindresorhus/slugify';
 import successCriteria from '../_data/successcriteria.js';
+import matchesLevel from './matches-level.js';
 
-export default async function scSupport(partiallySupported, unsupported) {
-	partiallySupported ||= [];
-	unsupported ||= [];
-
+/* eslint max-params: ["error", 5] */
+export default async function scSupport(
+	targetLevel,
+	allIssues,
+	partiallySupported = [],
+	unsupported = [],
+	notApplicable = [],
+) {
 	let criteria;
 
 	try {
@@ -12,6 +18,12 @@ export default async function scSupport(partiallySupported, unsupported) {
 		console.error(`Fetch failed in sc-support.js. ${error}`);
 	}
 
+	const filteredCriteria = Object.fromEntries(
+		Object.entries(criteria).filter(([_key, criterion]) =>
+			matchesLevel(criterion.level, targetLevel),
+		),
+	);
+
 	let output = `
     <table class="sc-table">
     <thead>
@@ -19,12 +31,13 @@ export default async function scSupport(partiallySupported, unsupported) {
         <th>Success criteria</th>
         <th>Level</th>
         <th>Support</th>
+        <th>Issues</th>
       </tr>
     </thead>
     <tbody>`;
 
-	for (const key in criteria) {
-		if (Object.hasOwn(criteria, key)) {
+	for (const key in filteredCriteria) {
+		if (Object.hasOwn(filteredCriteria, key)) {
 			let support = 'Supported';
 
 			if (unsupported.includes(key)) {
@@ -35,7 +48,21 @@ export default async function scSupport(partiallySupported, unsupported) {
 				support = 'Partially Supported';
 			}
 
-			output += `<tr><td>${key}: ${criteria[key].name}</td><td>${criteria[key].level}</td><td>${support}</td></tr>`;
+			if (notApplicable.includes(key)) {
+				support = 'Not applicable';
+			}
+
+			const relevantIssues = allIssues.filter(issue =>
+				issue.data.sc.includes(key),
+			);
+
+			let issues = relevantIssues.length > 0 ? '' : 'None identified.';
+
+			for (const issue of relevantIssues) {
+				issues += `<li><a href="#${slugify(issue.data.title)}">${issue.data.title}</a></li>`;
+			}
+
+			output += `<tr><td>${key}: ${criteria[key].name}</td><td>${criteria[key].level}</td><td>${support}</td><td>${relevantIssues.length > 0 ? `<ul>${issues}</ul>` : issues}</td></tr>`;
 		}
 	}
 
