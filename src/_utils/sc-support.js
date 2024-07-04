@@ -1,29 +1,30 @@
-import successCriteria from "../_data/successcriteria.js";
-import matchesLevel from "./matches-level.js";
-import slugify from "@sindresorhus/slugify";
+import slugify from '@sindresorhus/slugify';
+import successCriteria from '../_data/successcriteria.js';
+import matchesLevel from './matches-level.js';
 
+/* eslint max-params: ["error", 5] */
 export default async function scSupport(
-  targetLevel,
-  allIssues,
-  partiallySupported = [],
-  unsupported = [],
-  notApplicable = [],
+	targetLevel,
+	allIssues,
+	partiallySupported = [],
+	unsupported = [],
+	notApplicable = [],
 ) {
-  let criteria;
+	let criteria;
 
-  try {
-    criteria = await successCriteria();
-  } catch (error) {
-    console.error(`Fetch failed in sc-support.js. ${error}`);
-  }
+	try {
+		criteria = await successCriteria();
+	} catch (error) {
+		console.error(`Fetch failed in sc-support.js. ${error}`);
+	}
 
-  const filteredCriteria = Object.fromEntries(
-    Object.entries(criteria).filter(([_key, criterion]) => {
-      return matchesLevel(criterion.level, targetLevel);
-    }),
-  );
+	const filteredCriteria = Object.fromEntries(
+		Object.entries(criteria).filter(([_key, criterion]) =>
+			matchesLevel(criterion.level, targetLevel),
+		),
+	);
 
-  let output = `
+	let output = `
     <table class="sc-table">
     <thead>
       <tr>
@@ -35,38 +36,38 @@ export default async function scSupport(
     </thead>
     <tbody>`;
 
-  for (const key in filteredCriteria) {
-    if (Object.hasOwn(filteredCriteria, key)) {
-      let support = "Supported";
+	for (const key in filteredCriteria) {
+		if (Object.hasOwn(filteredCriteria, key)) {
+			let support = 'Supported';
 
-      if (unsupported.includes(key)) {
-        support = "Unsupported";
-      }
+			if (unsupported.includes(key)) {
+				support = 'Unsupported';
+			}
 
-      if (partiallySupported.includes(key)) {
-        support = "Partially Supported";
-      }
+			if (partiallySupported.includes(key)) {
+				support = 'Partially Supported';
+			}
 
-      if (notApplicable.includes(key)) {
-        support = "Not applicable";
-      }
+			if (notApplicable.includes(key)) {
+				support = 'Not applicable';
+			}
 
-      const relevantIssues = allIssues.filter((issue) =>
-        issue.data.sc.includes(key),
-      );
+			const relevantIssues = allIssues.filter(issue =>
+				issue.data.sc.includes(key),
+			);
 
-      let issues = relevantIssues.length ? "" : "None identified.";
+			let issues = relevantIssues.length > 0 ? '' : 'None identified.';
 
-      for (const issue of relevantIssues) {
-        issues += `<li><a href="#${slugify(issue.data.title)}">${issue.data.title}</a></li>`;
-      }
+			for (const issue of relevantIssues) {
+				issues += `<li><a href="#${slugify(issue.data.title)}">${issue.data.title}</a></li>`;
+			}
 
-      output += `<tr><td>${key}: ${criteria[key].name}</td><td>${criteria[key].level}</td><td>${support}</td><td>${relevantIssues.length ? `<ul>${issues}</ul>` : issues}</td></tr>`;
-    }
-  }
+			output += `<tr><td>${key}: ${criteria[key].name}</td><td>${criteria[key].level}</td><td>${support}</td><td>${relevantIssues.length > 0 ? `<ul>${issues}</ul>` : issues}</td></tr>`;
+		}
+	}
 
-  output += `<tbody>
+	output += `<tbody>
     </table>`;
 
-  return output;
+	return output;
 }
