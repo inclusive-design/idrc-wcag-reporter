@@ -74,8 +74,12 @@ h3 {
 	margin-top: 3em;
 }
 
+#tips h3,
 h4 {
+	color: #191970;
 	font-size: 1.125rem;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 h5 {
@@ -143,6 +147,40 @@ pre[class*='language-'] {
 	font-size: 0.875rem;
 }
 
+[aria-expanded] {
+	appearance: none;
+	background: transparent;
+	border: none;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	padding-block: 0.5em;
+}
+
+[aria-expanded] svg {
+	margin-inline-end: 0.5ch;
+	transition: transform 0.2s;
+}
+
+[aria-expanded='true'] svg {
+	transform: rotate(90deg);
+}
+
+h3:has([aria-expanded]) {
+	margin-block-start: 1em;
+}
+
+h3:has([aria-expanded]) + div,
+h3:has([aria-expanded]) + table-saw {
+	display: block;
+}
+
+h3:has([aria-expanded='false']) + div,
+h3:has([aria-expanded='false']) + table-saw {
+	display: none;
+}
+
 .issue {
 	border: 1px solid #d3d3d3;
 	counter-increment: issue-number;
@@ -199,7 +237,7 @@ pre[class*='language-'] {
 }
 
 .issue-meta div {
-	margin: 0 2.5% 2.5% 0;
+	margin: 0 1rem 0.5rem 0;
 	width: 45%;
 }
 

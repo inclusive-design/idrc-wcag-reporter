@@ -24,24 +24,24 @@ export default async function scTable(
 	const totals = totalsByLevelData[targetWcagVersion.toString()][targetLevel];
 
 	const perceivable = allIssues
-		.filter(issue => issue.data.sc.some(sc => sc.startsWith('1.')))
+		.filter(issue => issue.sc.startsWith('1.'))
 		.reduce(countSuccessCriterionOnce, []);
 	const operable = allIssues
-		.filter(issue => issue.data.sc.some(sc => sc.startsWith('2.')))
+		.filter(issue => issue.sc.startsWith('2.'))
 		.reduce(countSuccessCriterionOnce, []);
 	const understandable = allIssues
-		.filter(issue => issue.data.sc.some(sc => sc.startsWith('3.')))
+		.filter(issue => issue.sc.startsWith('3.'))
 		.reduce(countSuccessCriterionOnce, []);
 	const robust = allIssues
-		.filter(issue => issue.data.sc.some(sc => sc.startsWith('4.')))
+		.filter(issue => issue.sc.startsWith('4.'))
 		.reduce(countSuccessCriterionOnce, []);
 
 	const totalConforming
-        = totals.perceivable
-        - perceivable.length
-        + (totals.operable - operable.length)
-        + (totals.understandable - understandable.length)
-        + (totals.robust - robust.length);
+    = totals.perceivable
+    - perceivable.length
+    + (totals.operable - operable.length)
+    + (totals.understandable - understandable.length)
+    + (totals.robust - robust.length);
 	return `
   <table class="sc-table">
   <thead>

@@ -4,11 +4,9 @@
   "description": "Eleventy project to build accessibility conformance reports in HTML from issues written in Markdown.",
   "main": "eleventy.config.js",
   "scripts": {
-    "build": "npm-run-all -l clean -s build:*",
+    "build": "npm-run-all -l clean -s build:eleventy",
     "build:eleventy": "eleventy",
-    "build:pdf": "weasyprint --pdf-variant=pdf/ua-1 _site/index.html _site/report.pdf",
     "clean": "rimraf _site",
-    "create-pdf": "run",
     "debug": "DEBUG=Eleventy* eleventy",
     "dev": "cross-env NODE_ENV=development eleventy --serve",
     "lint": "run-s -l lint:*",
@@ -16,9 +14,8 @@
     "lint:scripts": "xo",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint:yml": "xo \"**/*.yml\"",
-    "open-pdf": "open-cli _site/report.pdf",
     "start": "npm-run-all -l clean dev",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -37,6 +34,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@zachleat/table-saw": "^1.0.6",
     "a11y-syntax-highlighting": "^0.2.0",
+    "execa": "^9.3.0",
     "new-github-issue-url": "^1.0.0"
   },
   "devDependencies": {
@@ -52,7 +50,6 @@
     "markdownlint-cli2": "^0.13.0",
     "markdownlint-config-fluid": "^0.1.5",
     "npm-run-all2": "^6.0.0",
-    "open-cli": "^8.0.0",
     "rimraf": "^5.0.7",
     "stylelint": "^16.6.1",
     "stylelint-config-xo": "^1.0.2",

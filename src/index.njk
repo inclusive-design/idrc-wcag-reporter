@@ -1,0 +1,10 @@
+---
+title: IDRC WCAG Reporter
+permalink: /
+layout: base
+---
+<h1>IDRC WCAG Reporter</h1>
+
+<ul>{% for report in collections.reports %}
+    <li><a href="{{ report.url }}">{{ report.data.title }}</a></li>
+{% endfor %}</ul>

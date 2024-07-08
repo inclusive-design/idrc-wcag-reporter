@@ -1,16 +1,7 @@
-import successCriteria from '../_data/successcriteria.js';
+export default function scUri(sc, criteria) {
+	const baseUri = 'https://www.w3.org/WAI/WCAG22/Understanding/';
 
-export default async function scUri(sc, targetWcagVersion) {
-	const baseUri = `https://www.w3.org/WAI/WCAG22/quickref/?versions=${targetWcagVersion}`;
-
-	let criteria;
 	let slug;
-
-	try {
-		criteria = await successCriteria();
-	} catch (error) {
-		console.error(`Fetch failed in sc-uri.js. ${error}`);
-	}
 
 	if (criteria[sc]) {
 		slug = criteria[sc].id || '';
@@ -21,5 +12,5 @@ export default async function scUri(sc, targetWcagVersion) {
 		return;
 	}
 
-	return `${baseUri}#${slug}`;
+	return `${baseUri}${slug}.html`;
 }

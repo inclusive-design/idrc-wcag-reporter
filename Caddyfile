@@ -1,0 +1,9 @@
+localhost {
+    root * /usr/share/caddy
+
+    file_server
+
+    basicauth /reports/example-client/* {
+        Example $2a$14$7sFXQVGU6wL3VzFG1EfQ0u5TkTPDAWQpDArdHZl1QFaTUkkNh.Vja
+    }
+}
