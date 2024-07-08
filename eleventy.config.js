@@ -64,17 +64,17 @@ export default function eleventy(eleventyConfig) {
       "assets/scripts/table-saw.js",
   });
 
-  eleventyConfig.on(
-    "eleventy.after",
-    async ({ _dir, results, _runMode, _outputMode }) => {
-      for (const result of results) {
-        if (result.inputPath.startsWith("./src/collections/reports/")) {
-          const { stdout } =
-            await $`weasyprint --pdf-variant=pdf/ua-1 ${result.outputPath} ./_site${result.url}report.pdf`;
-        }
-      }
-    },
-  );
+  // eleventyConfig.on(
+  //   "eleventy.after",
+  //   async ({ _dir, results, _runMode, _outputMode }) => {
+  //     for (const result of results) {
+  //       if (result.inputPath.startsWith("./src/collections/reports/")) {
+  //         const { stdout } =
+  //           await $`weasyprint --pdf-variant=pdf/ua-1 ${result.outputPath} ./_site${result.url}report.pdf`;
+  //       }
+  //     }
+  //   },
+  // );
 
   return {
     dir: {
