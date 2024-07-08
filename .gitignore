@@ -1,5 +1,6 @@
 .DS_Store
 .cache
+.env
 _site
 node_modules
 pdfs
