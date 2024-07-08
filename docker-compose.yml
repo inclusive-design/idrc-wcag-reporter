@@ -1,0 +1,10 @@
+services:
+  idrc-wcag-reporter:
+    build: .
+    container_name: "idrc-wcag-reporter"
+    # env_file: /home/ec2-user/secrets/idrc-wcag-reporter.env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile

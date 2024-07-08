@@ -12,6 +12,6 @@ COPY . ./
 
 RUN npm run build
 
-FROM nginx:1.27.0-alpine
+FROM caddy:2.8
 
-COPY --from=builder /app/_site /usr/share/nginx/html
+COPY --from=builder /app/_site /usr/share/caddy
