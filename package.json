@@ -11,9 +11,8 @@
     "dev": "cross-env NODE_ENV=development eleventy --serve",
     "lint": "run-s -l lint:*",
     "lint:styles": "stylelint \"**/*.css\"",
-    "lint:scripts": "xo",
+    "lint:scripts": "biome check .",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
-    "lint:yml": "xo \"**/*.yml\"",
     "start": "npm-run-all -l clean dev",
     "prepare": "husky"
   },
@@ -40,11 +39,9 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "biome-config-fluid": "github:greatislander/biome-config-fluid",
     "cross-env": "^7.0.3",
     "debug": "^4.3.5",
-    "eslint-plugin-jsdoc": "^48.2.7",
-    "eslint-plugin-markdown": "^5.0.0",
-    "eslint-plugin-yml": "^1.14.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "markdownlint-cli2": "^0.13.0",
@@ -53,15 +50,11 @@
     "rimraf": "^6.0.0",
     "stylelint": "^16.6.1",
     "stylelint-config-xo": "^1.0.2",
-    "stylelint-order": "^6.0.4",
-    "xo": "^0.58.0"
+    "stylelint-order": "^6.0.4"
   },
   "lint-staged": {
     "*.css": "stylelint --fix",
-    "*.{js,yml}": "xo --fix",
-    "*.md": [
-      "markdownlint-cli2 --fix",
-      "xo --fix"
-    ]
+    "*.{js,cjs,json,jsonc}": "biome check --write --no-errors-on-unmatched",
+    "*.md": ["markdownlint-cli2 --fix"]
   }
 }
