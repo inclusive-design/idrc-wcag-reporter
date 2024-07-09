@@ -14,6 +14,7 @@
     "lint:scripts": "biome check .",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "start": "npm-run-all -l clean dev",
+    "test": "c8 --all --src src -r clover -r text ava",
     "prepare": "husky"
   },
   "repository": {
@@ -39,7 +40,9 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "ava": "^6.1.3",
     "biome-config-fluid": "github:greatislander/biome-config-fluid",
+    "c8": "^10.1.2",
     "cross-env": "^7.0.3",
     "debug": "^4.3.5",
     "husky": "^9.0.11",
@@ -55,6 +58,8 @@
   "lint-staged": {
     "*.css": "stylelint --fix",
     "*.{js,cjs,json,jsonc}": "biome check --write --no-errors-on-unmatched",
-    "*.md": ["markdownlint-cli2 --fix"]
+    "*.md": [
+      "markdownlint-cli2 --fix"
+    ]
   }
 }
