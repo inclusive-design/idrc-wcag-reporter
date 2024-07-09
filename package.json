@@ -57,7 +57,7 @@
   },
   "lint-staged": {
     "*.css": "stylelint --fix",
-    "*.{js,cjs,json,jsonc}": "biome check --write --no-errors-on-unmatched",
+    "*.{js,cjs,json,jsonc}": "biome check . --write --no-errors-on-unmatched",
     "*.md": ["markdownlint-cli2 --fix"]
   }
 }

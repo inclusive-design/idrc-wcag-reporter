@@ -19,5 +19,5 @@ export default function newIssueUrl(title, body, sample, issuesUrl) {
         issueUrl = `${issuesUrl}/-/issues/new?issue[title]=${encodeURIComponent(title)}&issue[description]=${encodeURIComponent(body)}`;
     }
 
-  return issueUrl;
+    return issueUrl;
 }
