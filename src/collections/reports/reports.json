@@ -1,5 +1,5 @@
 {
-  "layout": "report",
-  "tags": ["reports"],
-  "permalink": "/{{ title | slugify }}/"
+    "layout": "report",
+    "tags": ["reports"],
+    "permalink": "/{{ title | slugify }}/"
 }
