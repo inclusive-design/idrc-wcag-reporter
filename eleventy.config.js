@@ -1,4 +1,4 @@
-import { EleventyRenderPlugin } from "@11ty/eleventy";
+import { RenderPlugin } from "@11ty/eleventy";
 import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
 // Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
@@ -11,15 +11,17 @@ export default function eleventy(eleventyConfig) {
     eleventyConfig.addShortcode("newIssueUrl", newIssueUrl);
     eleventyConfig.addLayoutAlias("report", "report.njk");
 
-    eleventyConfig.addPlugin(EleventyRenderPlugin);
+    eleventyConfig.addPlugin(RenderPlugin);
     eleventyConfig.addPlugin(syntaxHighlightPlugin);
 
     eleventyConfig.addFilter("withoutTips", (issues) => issues.filter((item) => Object.hasOwn(item, "sc") && item.sc !== ""));
 
     eleventyConfig.addFilter("withoutViolations", (issues) => issues.filter((item) => item.sc === "" || !Object.hasOwn(item, "sc")));
 
-    eleventyConfig.addShortcode("renderString", async function (content, format) {
-        return eleventyConfig.javascriptFunctions.renderTemplate.call(this, content, format);
+    eleventyConfig.addShortcode("renderString", async function (content, templateFormat) {
+        const renderManager = new RenderPlugin.RenderManager();
+        const result = await renderManager.compile(content, templateFormat);
+        return result.call(this);
     });
 
     eleventyConfig.addAsyncFilter("formatDate", (value) =>
