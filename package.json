@@ -32,7 +32,6 @@
     "@11ty/eleventy": "3.0.0-alpha.16",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "@11ty/eleventy-plugin-webc": "^0.11.2",
     "@zachleat/table-saw": "^1.0.6",
     "a11y-syntax-highlighting": "^0.2.0",
     "execa": "^9.3.0",

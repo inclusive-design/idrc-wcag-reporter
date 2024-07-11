@@ -1,18 +1,12 @@
 import { RenderPlugin } from "@11ty/eleventy";
 import fetch from "@11ty/eleventy-fetch";
 import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
-import pluginWebc from "@11ty/eleventy-plugin-webc";
 // Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
-import scSupport from "./src/_utils/sc-support.js";
-import scTable from "./src/_utils/sc-table.js";
 
 export default function eleventy(eleventyConfig) {
-    eleventyConfig.addNunjucksAsyncShortcode("scTable", scTable);
-    eleventyConfig.addNunjucksAsyncShortcode("scSupport", scSupport);
     eleventyConfig.addShortcode("newIssueUrl", newIssueUrl);
     eleventyConfig.addLayoutAlias("report", "report.njk");
-    eleventyConfig.addPlugin(pluginWebc);
 
     eleventyConfig.addGlobalData("successCriteria", async () => {
         const url = "https://raw.githubusercontent.com/w3c/wcag/main/guidelines/wcag.json";

@@ -30,13 +30,11 @@ layout: base
   {{ content | safe }}
   <h3>Results per principle</h3>
   <table-saw>
-  {% set scTableData = { targetLevel: targetLevel, targetWcagVersion: targetWcagVersion } %}
-  {% scTable successCriteria, issueList, scTableData %}
+    {{ scTable | safe }}
   </table-saw>
   <h3>Detailed results</h3>
-<table-saw>
-  {% set scSupportData = { targetLevel: targetLevel, targetWcagVersion: targetWcagVersion, notSupported: notSupported, notApplicable: notApplicable } %}
-  {% scSupport successCriteria, issueList, scSupportData %}
+  <table-saw>
+    {{ scSupport | safe }}
   </table-saw>
 </section>
 
