@@ -14,7 +14,7 @@
     "lint:scripts": "biome check .",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "start": "npm-run-all -l clean dev",
-    "test": "c8 --all --src src -r clover -r text ava",
+    "test": "c8 --all --src src/_utils -r clover -r text ava",
     "prepare": "husky"
   },
   "repository": {
