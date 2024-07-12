@@ -1,5 +1,4 @@
 import totalsByLevel from "../_utils/totals-by-level.js";
-import countSuccessCriterionOnce from "./count-success-criteria-once.js";
 import determineFailures from "./determine-failures.js";
 
 export default async function resultsByPrinciple(data) {
