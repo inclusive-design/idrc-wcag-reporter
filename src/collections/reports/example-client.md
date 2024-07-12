@@ -44,7 +44,7 @@ technologies:
 partiallySupported:
   - 1.2.1
   - 1.2.3
-unsupported:
+notSupported:
   - 1.4.1
 notApplicable:
   - 1.2.3
@@ -73,6 +73,31 @@ issues:
       ```
 
       The `<a>`-tag works with keyboard out of the box, does not rely on JavaScript and makes it easier for search engines to understand what is going on.
+  - title: Focus style missing
+    sc: 2.4.7
+    severity: High
+    sample: all
+    screenshots: null
+    body: |-
+      ##### Problem
+
+      Focus styles have been removed through the website's stylesheets:
+
+      ```css
+      * {
+        outline: none
+      }
+      ```
+
+      This causes problems for people who use the website without a mouse, as they will not be able to see where they are.
+
+      ##### Solution
+
+      Remove the `outline: none` rule, and/or add a specific style that applies on `:focus`. Make sure that it has sufficient contrast, too.
+
+      ##### Read more
+
+      - [Indicating focus to improve accessibility](https://hiddedevries.nl/en/blog/2019-06-06-indicating-focus-to-improve-accessibility)
   - title: Focus style missing
     sc: 2.4.7
     severity: High

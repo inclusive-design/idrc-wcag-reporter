@@ -1,20 +1,23 @@
 import totalsByLevel from "../_utils/totals-by-level.js";
 import countSuccessCriterionOnce from "./count-success-criteria-once.js";
+import determineFailures from "./determine-failures.js";
 
-export default async function scTable(successCriteria, allIssues, data) {
-    const { targetLevel, targetWcagVersion } = data;
+export default async function resultsByPrinciple(data) {
+    const { successCriteria, issues, targetLevel, targetWcagVersion, notSupported } = data;
 
     let totalsByLevelData;
 
     totalsByLevelData = await totalsByLevel(successCriteria);
 
+    const issuesWithCriteria = issues.filter((issue) => issue?.sc !== "");
+
     // Use string representation of WCAG version to avoid unwanted conversion from e.g. 2.0 to index 2
     const totals = totalsByLevelData[targetWcagVersion.toString()][targetLevel];
 
-    const perceivable = allIssues.filter((issue) => issue.sc.startsWith("1.")).reduce(countSuccessCriterionOnce, []);
-    const operable = allIssues.filter((issue) => issue.sc.startsWith("2.")).reduce(countSuccessCriterionOnce, []);
-    const understandable = allIssues.filter((issue) => issue.sc.startsWith("3.")).reduce(countSuccessCriterionOnce, []);
-    const robust = allIssues.filter((issue) => issue.sc.startsWith("4.")).reduce(countSuccessCriterionOnce, []);
+    const perceivable = determineFailures(issuesWithCriteria, "1.", notSupported);
+    const operable = determineFailures(issuesWithCriteria, "2.", notSupported);
+    const understandable = determineFailures(issuesWithCriteria, "3.", notSupported);
+    const robust = determineFailures(issuesWithCriteria, "4.", notSupported);
 
     const totalConforming = totals.perceivable - perceivable.length + (totals.operable - operable.length) + (totals.understandable - understandable.length) + (totals.robust - robust.length);
 

@@ -1,9 +1,9 @@
-import scSupport from "../../_utils/sc-support.js";
-import scTable from "../../_utils/sc-table.js";
+import resultsByPrinciple from "../../_utils/results-by-principle.js";
+import resultsBySuccessCriterion from "../../_utils/results-by-success-criterion.js";
 
 export default {
     eleventyComputed: {
-        scSupport: (data) => scSupport(data.successCriteria, data.issues, data),
-        scTable: (data) => scTable(data.successCriteria, data.issues, data)
+        resultsBySuccessCriterion: (data) => resultsBySuccessCriterion(data),
+        resultsByPrinciple: (data) => resultsByPrinciple(data)
     }
 };

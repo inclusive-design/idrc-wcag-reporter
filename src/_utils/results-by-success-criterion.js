@@ -3,15 +3,17 @@ import matchesLevel from "./matches-level.js";
 import matchesVersion from "./matches-version.js";
 import scUri from "./sc-uri.js";
 
-export default async function scSupport(successCriteria, allIssues, data) {
-    const { targetLevel, targetWcagVersion, notSupported = [], notApplicable = [] } = data;
+export default async function resultsBySuccessCriterion(data) {
+    const { issues, successCriteria, targetLevel, targetWcagVersion, notSupported = [], notApplicable = [] } = data;
 
     const filteredCriteria = Object.fromEntries(Object.entries(successCriteria).filter(([_key, criterion]) => matchesVersion(criterion.versions, targetWcagVersion) && matchesLevel(criterion.level, targetLevel)));
 
     let result = [];
 
+    const issuesWithCriteria = issues.filter((issue) => issue?.sc !== "");
+
     for (const key in filteredCriteria) {
-        const relevantIssues = allIssues.filter((issue) => issue.sc === key);
+        const relevantIssues = issuesWithCriteria.filter((issue) => issue.sc === key);
         const relevantSevereIssues = relevantIssues.filter((issue) => issue.severity === "High");
 
         let support = "Supports";
