@@ -30,7 +30,7 @@ export default async function resultsBySuccessCriterion(data) {
             support = "Does not support";
         }
 
-        const scReferenceLink = scUri(key, successCriteria);
+        const scReferenceLink = scUri(key, targetWcagVersion, successCriteria);
 
         result.push({
             key,
