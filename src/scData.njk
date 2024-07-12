@@ -3,10 +3,15 @@ permalink: ../src/_data/scData.json
 ---
 {
   "successCriteria": [
-{%- for number, sc in successcriteria %}
+{%- for number, sc in successCriteria %}
     {
         "number": "{{ number }}",
-        "name": "{{ sc.name }} (Level {{ sc.level }})"
+        "name": "{{ sc.name }} (Level {{ sc.level }})",
+        "principle": "{{ sc.principle }}",
+        "guideline": "{{ sc.guideline }}",
+        "level": "{{ sc.level }}",
+        "versions": {{ sc.versions | dump | safe }},
+        "id": "{{ sc.id.replace("WCAG2:", "") }}"
     }{% if not loop.last %},{% endif %}
 {%- endfor %}
   ]

@@ -1,6 +1,4 @@
-import successCriteria from "./successcriteria.js";
-
-export default async function totalsByLevel() {
+export default async function totalsByLevel(successCriteria) {
     const totals = {
         2.2: {
             A: {
@@ -72,15 +70,8 @@ export default async function totalsByLevel() {
             }
         }
     };
-    let criteria;
 
-    try {
-        criteria = await successCriteria();
-    } catch (error) {
-        console.error(`Fetch failed in totalsPerLevel.js. ${error}`);
-    }
-
-    for (const sc of Object.values(criteria)) {
+    for (const sc of Object.values(successCriteria)) {
         for (const version of sc.versions) {
             if (sc.level !== "") {
                 totals[version][sc.level].all++;

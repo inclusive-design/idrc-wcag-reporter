@@ -1,15 +1,45 @@
 import { RenderPlugin } from "@11ty/eleventy";
+import fetch from "@11ty/eleventy-fetch";
 import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
 // Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
-import scSupport from "./src/_utils/sc-support.js";
-import scTable from "./src/_utils/sc-table.js";
 
 export default function eleventy(eleventyConfig) {
-    eleventyConfig.addNunjucksAsyncShortcode("scTable", scTable);
-    eleventyConfig.addNunjucksAsyncShortcode("scSupport", scSupport);
     eleventyConfig.addShortcode("newIssueUrl", newIssueUrl);
     eleventyConfig.addLayoutAlias("report", "report.njk");
+
+    eleventyConfig.addGlobalData("successCriteria", async () => {
+        const url = "https://raw.githubusercontent.com/w3c/wcag/main/guidelines/wcag.json";
+
+        try {
+            const json = await fetch(url, {
+                duration: "1d",
+                type: "json"
+            });
+
+            const results = {};
+
+            for (const principle of json.principles) {
+                for (const guideline of principle.guidelines) {
+                    for (const sc of guideline.successcriteria) {
+                        results[sc.num] = {
+                            number: sc.num,
+                            principle: principle.handle,
+                            guideline: guideline.handle,
+                            name: sc.handle,
+                            level: sc.level,
+                            versions: sc.versions,
+                            id: sc.id.replace("WCAG2:", "")
+                        };
+                    }
+                }
+            }
+
+            return results;
+        } catch (error) {
+            console.error(`Fetch failed in successcriteria.js. ${error}`);
+        }
+    });
 
     eleventyConfig.addPlugin(RenderPlugin);
     eleventyConfig.addPlugin(syntaxHighlightPlugin);
