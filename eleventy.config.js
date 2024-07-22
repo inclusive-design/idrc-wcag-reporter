@@ -1,5 +1,6 @@
 import { RenderPlugin } from "@11ty/eleventy";
 import fetch from "@11ty/eleventy-fetch";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
 // Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
@@ -43,6 +44,16 @@ export default function eleventy(eleventyConfig) {
 
     eleventyConfig.addPlugin(RenderPlugin);
     eleventyConfig.addPlugin(syntaxHighlightPlugin);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+        extensions: "html",
+        formats: ["webp", "jpeg"],
+        urlPath: "/assets/images/processed/",
+        outputDir: "./_site/assets/images/processed/",
+        defaultAttributes: {
+            loading: "lazy",
+            decoding: "async"
+        }
+    });
 
     eleventyConfig.addFilter("withoutTips", (issues) => issues.filter((item) => Object.hasOwn(item, "sc") && item.sc !== ""));
 
@@ -69,7 +80,10 @@ export default function eleventy(eleventyConfig) {
     });
 
     eleventyConfig.addPassthroughCopy({
-        "src/assets": "assets"
+        "src/assets/fonts": "assets/fonts",
+        "src/assets/images": "assets/images",
+        "src/assets/scripts": "assets/scripts",
+        "src/assets/styles": "assets/styles"
     });
 
     eleventyConfig.addPassthroughCopy({
