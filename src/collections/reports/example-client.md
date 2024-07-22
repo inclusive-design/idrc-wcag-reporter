@@ -1,5 +1,4 @@
 ---
-uuid: 565bbb81-a759-4645-ae02-712bebda559a
 title: Example Client
 evaluators:
   - Lisa Liskovoi
@@ -9,6 +8,9 @@ targetLevel: AA
 targetWcagVersion: "2.2"
 date: 2024-03-07T14:07
 specialRequirements: Please also list accessibility problems that are not conformance failures.
+about: TODO.
+methodology: TODO.
+interpretation: TODO.
 scope:
   - title: Homepage
     url: https://example.com
@@ -19,9 +21,6 @@ scope:
 outOfScope:
   - title: RSS Feed
     url: https://example.com/feed
-about: TODO.
-methodology: TODO.
-interpretation: TODO.
 tools:
   - name: Mozilla Firefox
     version: "123"
@@ -63,7 +62,6 @@ issues:
       ```html
       <div class="link 202034rsfd oiarjgeoi" onclick="woo()">About us</div>
       ```
-
       ##### Solution
 
       Use `<a>` tags for the links, and use the `href` attribute for the location to link to, like this:
@@ -77,7 +75,7 @@ issues:
     sc: 2.4.7
     severity: High
     sample: all
-    screenshots: null
+    screenshots: []
     body: |-
       ##### Problem
 
@@ -98,32 +96,5 @@ issues:
       ##### Read more
 
       - [Indicating focus to improve accessibility](https://hiddedevries.nl/en/blog/2019-06-06-indicating-focus-to-improve-accessibility)
-  - title: Focus style missing
-    sc: 2.4.7
-    severity: High
-    sample: all
-    screenshots: null
-    body: |-
-      ##### Problem
-
-      Focus styles have been removed through the website's stylesheets:
-
-      ```css
-      * {
-        outline: none
-      }
-      ```
-
-      This causes problems for people who use the website without a mouse, as they will not be able to see where they are.
-
-      ##### Solution
-
-      Remove the `outline: none` rule, and/or add a specific style that applies on `:focus`. Make sure that it has sufficient contrast, too.
-
-      ##### Read more
-
-      - [Indicating focus to improve accessibility](https://hiddedevries.nl/en/blog/2019-06-06-indicating-focus-to-improve-accessibility)
-supported:
-  - 1.1.1
 ---
 This website is partly accessible. Some severe issues were found and described in this report.

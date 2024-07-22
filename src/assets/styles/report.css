@@ -120,6 +120,22 @@ img {
 	max-width: 100%;
 }
 
+figure {
+	margin-inline: 0;
+}
+
+figure + figure {
+	margin-block-start: 2rem;
+}
+
+figure img {
+	height: auto;
+}
+
+figcaption {
+	font-style: italic;
+}
+
 a,
 a:visited {
 	color: #191970;
