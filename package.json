@@ -32,11 +32,12 @@
     "@11ty/eleventy": "^3.0.0-alpha.17",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^4.0.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@zachleat/table-saw": "^1.0.6",
     "a11y-syntax-highlighting": "^0.2.0",
     "execa": "^9.3.0",
-    "new-github-issue-url": "^1.0.0"
+    "linkedom": "^0.18.4",
+    "new-github-issue-url": "^1.0.0",
+    "shiki": "^1.11.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

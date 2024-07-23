@@ -1,7 +1,7 @@
 import { RenderPlugin } from "@11ty/eleventy";
 import fetch from "@11ty/eleventy-fetch";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
-import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
+import syntaxHighlightTransform from "./src/_transforms/syntax-highlight.js";
 // Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
 
@@ -42,8 +42,8 @@ export default function eleventy(eleventyConfig) {
         }
     });
 
+    eleventyConfig.addTransform("syntaxHighlight", syntaxHighlightTransform);
     eleventyConfig.addPlugin(RenderPlugin);
-    eleventyConfig.addPlugin(syntaxHighlightPlugin);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         extensions: "html",
         formats: ["webp", "jpeg"],
@@ -87,7 +87,6 @@ export default function eleventy(eleventyConfig) {
     });
 
     eleventyConfig.addPassthroughCopy({
-        "node_modules/a11y-syntax-highlighting/dist/prism/a11y-dark.min.css": "assets/styles/a11y-dark.min.css",
         "node_modules/@zachleat/table-saw/table-saw.js": "assets/scripts/table-saw.js"
     });
 
