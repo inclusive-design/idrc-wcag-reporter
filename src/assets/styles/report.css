@@ -161,10 +161,24 @@ code {
 	font-size: 0.875rem;
 }
 
-pre.shiki {
+.shiki {
 	border-radius: 0.25rem;
 	padding-block: 0.5em;
 	padding-inline: 1em;
+}
+
+.shiki,
+.shiki span {
+	background-color: var(--shiki-light-bg);
+	color: var(--shiki-light);
+}
+
+@media (prefers-color-scheme: dark) {
+	.shiki,
+	.shiki span {
+		background-color: var(--shiki-dark-bg);
+		color: var(--shiki-dark);
+	}
 }
 
 [aria-expanded] {
