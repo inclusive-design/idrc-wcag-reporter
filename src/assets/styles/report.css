@@ -156,11 +156,15 @@ li code {
 }
 
 pre,
-code,
-code[class*='language-'],
-pre[class*='language-'] {
+code {
 	font-family: 'Noto Sans Mono', monospace;
 	font-size: 0.875rem;
+}
+
+pre.shiki {
+	border-radius: 0.25rem;
+	padding-block: 0.5em;
+	padding-inline: 1em;
 }
 
 [aria-expanded] {
