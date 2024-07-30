@@ -1,8 +1,9 @@
+import fs from "fs";
 import { RenderPlugin } from "@11ty/eleventy";
 import fetch from "@11ty/eleventy-fetch";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import HTMLtoDOCX from "html-to-docx";
 import syntaxHighlightTransform from "./src/_transforms/syntax-highlight.js";
-// Import {$} from 'execa';
 import newIssueUrl from "./src/_utils/new-issue-url.js";
 
 export default function eleventy(eleventyConfig) {
@@ -90,17 +91,26 @@ export default function eleventy(eleventyConfig) {
         "node_modules/@zachleat/table-saw/table-saw.js": "assets/scripts/table-saw.js"
     });
 
-    // EleventyConfig.on(
-    //   "eleventy.after",
-    //   async ({ _dir, results, _runMode, _outputMode }) => {
-    //     for (const result of results) {
-    //       if (result.inputPath.startsWith("./src/collections/reports/")) {
-    //         const { stdout } =
-    //           await $`weasyprint --pdf-variant=pdf/ua-1 ${result.outputPath} ./_site${result.url}report.pdf`;
-    //       }
-    //     }
-    //   },
-    // );
+    eleventyConfig.on("eleventy.after", async ({ _dir, results, _runMode, _outputMode }) => {
+        for (const result of results) {
+            if (result.inputPath.startsWith("./src/collections/reports/")) {
+                fs.readFile(result.outputPath, "utf8", async (error, data) => {
+                    if (error) {
+                        console.error(error);
+                    }
+
+                    const fileBuffer = await HTMLtoDOCX(data, null, {
+                        pageNumber: true
+                    });
+                    fs.writeFile(`./_site${result.url}report.docx`, fileBuffer, (error) => {
+                        if (error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            }
+        }
+    });
 
     return {
         dir: {
