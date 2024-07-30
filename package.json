@@ -34,7 +34,7 @@
     "@11ty/eleventy-img": "^4.0.2",
     "@zachleat/table-saw": "^1.0.6",
     "a11y-syntax-highlighting": "^0.2.0",
-    "execa": "^9.3.0",
+    "html-to-docx": "^1.8.0",
     "linkedom": "^0.18.4",
     "new-github-issue-url": "^1.0.0",
     "night-owl": "github:sdras/night-owl-vscode-theme",
