@@ -29,11 +29,10 @@
   },
   "homepage": "https://github.com/inclusive-design/idrc-wcag-reporter#readme",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0-alpha.17",
+    "@11ty/eleventy": "^3.0.0-alpha.18",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^4.0.2",
     "@zachleat/table-saw": "^1.0.6",
-    "a11y-syntax-highlighting": "^0.2.0",
     "execa": "^9.3.0",
     "linkedom": "^0.18.4",
     "new-github-issue-url": "^1.0.0",
