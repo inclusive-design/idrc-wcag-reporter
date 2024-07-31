@@ -59,12 +59,6 @@ export default function eleventy(eleventyConfig) {
 
     eleventyConfig.addFilter("withoutViolations", (issues) => issues.filter((item) => item.sc === "" || !Object.hasOwn(item, "sc")));
 
-    eleventyConfig.addShortcode("renderString", async function (content, templateFormat) {
-        const renderManager = new RenderPlugin.RenderManager();
-        const result = await renderManager.compile(content, templateFormat);
-        return result.call(this);
-    });
-
     eleventyConfig.addAsyncFilter("formatDate", (value) =>
         new Date(value).toLocaleString("en-CA", {
             year: "numeric",
