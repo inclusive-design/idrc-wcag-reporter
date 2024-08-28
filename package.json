@@ -35,6 +35,7 @@
     "@zachleat/table-saw": "^1.0.6",
     "execa": "^9.3.0",
     "linkedom": "^0.18.4",
+    "liquidjs": "^10.16.4",
     "new-github-issue-url": "^1.0.0",
     "night-owl": "github:sdras/night-owl-vscode-theme",
     "shiki": "^1.11.0"
@@ -60,8 +61,6 @@
   "lint-staged": {
     "*.css": "stylelint --fix",
     "*.{js,cjs,json,jsonc}": "biome check --write --no-errors-on-unmatched",
-    "*.md": [
-      "markdownlint-cli2 --fix"
-    ]
+    "*.md": ["markdownlint-cli2 --fix"]
   }
 }
