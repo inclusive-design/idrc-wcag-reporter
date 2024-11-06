@@ -12,6 +12,6 @@ COPY . ./
 
 RUN npm run build
 
-FROM caddy:2.8
+FROM caddy:2.9
 
 COPY --from=builder /app/_site /usr/share/caddy
