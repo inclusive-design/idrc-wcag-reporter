@@ -30,7 +30,7 @@
   "homepage": "https://github.com/inclusive-design/idrc-wcag-reporter#readme",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0-beta.1",
-    "@11ty/eleventy-fetch": "^4.0.1",
+    "@11ty/eleventy-fetch": "^5.0.0",
     "@11ty/eleventy-img": "^4.0.2",
     "@zachleat/table-saw": "^1.0.6",
     "execa": "^9.3.0",
