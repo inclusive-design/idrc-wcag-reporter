@@ -1,0 +1,12 @@
+---
+permalink: ../src/_data/successCriteriaData.yml
+---
+{%- for number, sc in successCriteria -%}
+- number: {{ number }}
+  name: "{{ sc.name }} (Level {{ sc.level }})",
+  principle: "{{ sc.principle }}",
+  guideline: "{{ sc.guideline }}",
+  level: "{{ sc.level }}",
+  versions: {{ sc.versions | dump | safe }},
+  id: "{{ sc.id.replace("WCAG2:", "") }}"
+{% endfor %}
