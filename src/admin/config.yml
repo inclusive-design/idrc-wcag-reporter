@@ -13,14 +13,14 @@ collections:
     files:
       - label: Success Criteria
         name: scData
-        file: src/_data/scData.json
+        file: src/_data/successCriteriaData.yml
         editor:
           preview: false
         fields:
-          - name: successCriteria
+          - name: scData
             label: Success Criteria
-            summary: "{{fields.number}} {{fields.name}}"
             widget: list
+            root: true
             fields:
               - name: number
                 label: Number
@@ -28,6 +28,21 @@ collections:
                 readonly: true
               - name: name
                 label: Name
+                widget: string
+              - name: principle
+                label: Principle       
+                widget: string
+              - name: guideline
+                label: Guideline
+                widget: string
+              - name: level
+                label: Level
+                widget: string
+              - name: versions
+                label: Versions
+                widget: list
+              - name: id
+                label: ID              
                 widget: string
   - label: Reports
     name: reports
